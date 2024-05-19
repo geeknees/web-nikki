@@ -7,18 +7,22 @@ import Pagination from '~/components/Pagination.astro'
 const posts = (await getPosts()).slice(0, 5)
 
 const { translate: t } = Astro.locals
-
 ---
 
 <LayoutDefault>
-  <section contain-layout un-flex="~ col gap-7.5">
+  <section contain-layout un-flex='~ col gap-7.5'>
     {
       posts.map((post) => (
         <Post post={post}>
-          <p class="line-clamp-4">{getPostDescription(post)}</p>
+          <p class='line-clamp-4'>{getPostDescription(post)}</p>
         </Post>
       ))
     }
-    <Pagination showLeft={false} showPageCount={false} rightTitle={t('all_posts')} rightUrl={'posts/page/1'} />
+    <Pagination
+      showLeft={false}
+      showPageCount={false}
+      rightTitle={t('all_posts')}
+      rightUrl={'WebNikki/posts/page/1'}
+    />
   </section>
 </LayoutDefault>

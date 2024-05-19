@@ -1,67 +1,61 @@
 export const THEME_CONFIG: App.Locals['config'] = {
   /** blog title */
-  title: "活版印字",
+  title: 'Web日記（WebNikki）',
   /** your name */
-  author: "Typography",
+  author: 'geeknees',
   /** website description */
-  desc: "Rediscory the beauty of typography",
+  desc: "geeknees's Web日記（WebNikki）",
   /** your deployed domain */
-  website: "https://astro-theme-typography.vercel.app/",
+  website: 'https://geeknees.github.io/',
   /** your locale */
-  locale: "en-us",
+  locale: 'en-us',
   /** theme style */
-  themeStyle: "light",
+  themeStyle: 'auto',
   /** your socials */
   socials: [
     {
-      name: "github",
-      href: "https://github.com/moeyua/astro-theme-typography",
+      name: 'github',
+      href: 'https://github.com/geeknees'
     },
     {
-      name: "rss",
-      href: "/atom.xml",
+      name: 'rss',
+      href: '/WebNikki/atom.xml'
     },
     {
-      name: "twitter",
-      href: "https://github.com/moeyua/astro-theme-typography",
-    },
-    {
-      name: "mastodon",
-      href: "https://github.com/moeyua/astro-theme-typography",
+      name: 'twitter',
+      href: 'https://twitter.com/_geeknees'
     }
   ],
   /** your header info */
   header: {
-    twitter: "@moeyua13",
+    twitter: '@_geeknees'
   },
   /** your navigation links */
   navs: [
     {
-      name: "Posts",
-      href: "/posts/page/1",
+      name: 'Posts',
+      href: '/WebNikki/posts/page/1'
     },
     {
-      name: "Archive",
-      href: "/archive",
-    },
-    {
-      name: "Categories",
-      href: "/categories"
-    },
-    {
-      name: "About",
-      href: "/about",
-    },
+      name: 'Archive',
+      href: '/WebNikki/archive'
+    }
+    // {
+    //   name: 'Categories',
+    //   href: '/WebNikki/categories'
+    // },
+    // {
+    //   name: 'About',
+    //   href: 'WebNikki/about'
+    // }
   ],
   /** your category name mapping, which the `path` will be shown in the url */
-  category_map: [
-    { name: "胡适", path: "hu-shi" },
-  ],
+  category_map: [{ name: '胡适', path: 'hu-shi' }],
   /** your comment provider */
   comments: {
-    disqus: {
-      shortname: "typography-astro",
-    },
+    // disqus: {
+    //   shortname: 'typography-astro'
+    // }
     // giscus: {
     //   repo: 'moeyua/astro-theme-typography',
     //   repoId: 'R_kgDOKy9HOQ',
@@ -81,4 +75,3 @@ export const THEME_CONFIG: App.Locals['config'] = {
     // }
   }
 }
-

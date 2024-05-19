@@ -13,7 +13,7 @@ export const getStaticPaths = (async ({}) => {
     const next = posts[idx + 1]
     return {
       params: { slug: post.slug },
-      props: { entry: post, next, prev },
+      props: { entry: post, next, prev }
     }
   })
 }) satisfies GetStaticPaths
@@ -26,11 +26,15 @@ const { Content } = await entry.render()
 const { translate: t } = Astro.locals
 
 function getUrl(slug: string) {
-  return `/posts/${slug}`
+  return `/WebNikki/posts/${slug}`
 }
 ---
 
-<LayoutDefault title={entry.data.title} desc={entry.data.description} banner={entry.data.banner}>
+<LayoutDefault
+  title={entry.data.title}
+  desc={entry.data.description}
+  banner={entry.data.banner}
+>
   <Post post={entry}>
     <Content />
   </Post>
@@ -44,7 +48,7 @@ function getUrl(slug: string) {
     showPageCount={false}
   />
   <!-- BUG 这里使用 client:visible 会导致构建失败。ref: https://github.com/withastro/astro/issues/7329 -->
-    <Comments post={entry} />
+  <Comments post={entry} />
 </LayoutDefault>
 
 <script>
@@ -84,8 +88,8 @@ function getUrl(slug: string) {
   }
   .clipboard-copy {
     position: absolute;
-    top: .5rem;
-    right: .5rem;
+    top: 0.5rem;
+    right: 0.5rem;
     width: 1.75rem;
     height: 1.75rem;
     display: flex;

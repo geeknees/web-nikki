@@ -15,16 +15,19 @@ posts.forEach((post: Post) => {
   }
   postByYear.get(year)!.push(post)
 })
-
 ---
 
 <LayoutDefault>
-  <div un-flex="~ col gap-4">
+  <div un-flex='~ col gap-4'>
     {
       Array.from(postByYear.entries()).map(([year, posts]) => (
         <ListSection title={year}>
           {posts.map((post) => (
-            <ListItem title={post.data.title} href={`/posts/${post.slug}/`} description={formatDate(post.data.pubDate)} />
+            <ListItem
+              title={post.data.title}
+              href={`/WebNikki/posts/${post.slug}/`}
+              description={formatDate(post.data.pubDate)}
+            />
           ))}
         </ListSection>
       ))

@@ -5,13 +5,21 @@ import LayoutDefault from '~/layouts/LayoutDefault.astro'
 import { getCategories, getPathFromCategory } from '~/utils/index'
 
 const { translate: t } = Astro.locals
-const { category_map } = Astro.locals.config;
+const { category_map } = Astro.locals.config
 
 const categories = await getCategories()
 ---
 
 <LayoutDefault>
   <ListSection title={t('Categories')}>
-    {Array.from(categories).map(([key, value]) => <ListItem title={key} href={`/categories/${getPathFromCategory(key, category_map)}`} description={t('categories_count', value.length)} />)}
+    {
+      Array.from(categories).map(([key, value]) => (
+        <ListItem
+          title={key}
+          href={`/WebNikki/categories/${getPathFromCategory(key, category_map)}`}
+          description={t('categories_count', value.length)}
+        />
+      ))
+    }
   </ListSection>
 </LayoutDefault>
