@@ -14,6 +14,6 @@ _A few days ago, Google released a Python Notebook to let you play with some of 
 
 Dockerの便利さはこうしたものを気軽に試せることだと痛感しました。またdeep dreamをこんな簡単にも動かせるのはすごいです。deep dreamで画像を解析させると下記のような感じになります。
 
-![](/WebNikki/img/1__z4Nx3J9HqctTV8AzjRAcsg.jpeg)
+![](/web-nikki/img/1__z4Nx3J9HqctTV8AzjRAcsg.jpeg)
 
 色々とやばいね。

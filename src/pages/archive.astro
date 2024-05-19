@@ -25,7 +25,7 @@ posts.forEach((post: Post) => {
           {posts.map((post) => (
             <ListItem
               title={post.data.title}
-              href={`/WebNikki/posts/${post.slug}/`}
+              href={`/web-nikki/posts/${post.slug}/`}
               description={formatDate(post.data.pubDate)}
             />
           ))}

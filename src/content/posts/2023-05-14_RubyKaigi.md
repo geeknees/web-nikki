@@ -47,6 +47,6 @@ _ニコル：「みんながいつも『今をつかむんだ』って言うじ�
 
 _メイソン：うん、そうだね。わかるよ。その瞬間って、ずっと続いてるんだよね。いつでも今、って感じなんだよね？」_
 
-![](/WebNikki/img/1__Ls4ctdN15WwlNx8tVTABfw.jpeg)
+![](/web-nikki/img/1__Ls4ctdN15WwlNx8tVTABfw.jpeg)
 
 RubyKaigi は今をつかんでる人たちの祭典のように思う。だからRubyKaigiは私達をつかんで離さない。そんな気がした。

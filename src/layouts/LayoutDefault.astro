@@ -28,7 +28,7 @@ const image =
     format: 'jpeg'
   }))
 const optimizedImage = new URL(
-  image?.src ?? '/WebNikki/placeholder.png',
+  image?.src ?? '/web-nikki/placeholder.png',
   Astro.url
 ).toString()
 ---
@@ -43,7 +43,7 @@ const optimizedImage = new URL(
       description={desc}
       extend={{
         link: [
-          { rel: 'icon', href: '/WebNikki/favicon.svg', type: 'image/svg+xml' }
+          { rel: 'icon', href: '/web-nikki/favicon.svg', type: 'image/svg+xml' }
         ],
         meta: [
           { name: 'twitter:image:src', content: optimizedImage },

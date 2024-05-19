@@ -18,7 +18,7 @@ export async function GET(_context: APIContext) {
     site: website,
     items: posts.map((post) => {
       return {
-        link: `/WebNikki/posts/${post.slug}/`,
+        link: `/web-nikki/posts/${post.slug}/`,
         author: author,
         content: sanitizeHtml(parser.render(post.body), { allowedTags }),
         title: post.data.title,
@@ -31,6 +31,6 @@ export async function GET(_context: APIContext) {
         enclosure: post.data.enclosure
       }
     }),
-    stylesheet: '/WebNikki/pretty-feed-v3.xsl'
+    stylesheet: '/web-nikki/pretty-feed-v3.xsl'
   })
 }

@@ -16,7 +16,7 @@ const categories = await getCategories()
       Array.from(categories).map(([key, value]) => (
         <ListItem
           title={key}
-          href={`/WebNikki/categories/${getPathFromCategory(key, category_map)}`}
+          href={`/web-nikki/categories/${getPathFromCategory(key, category_map)}`}
           description={t('categories_count', value.length)}
         />
       ))

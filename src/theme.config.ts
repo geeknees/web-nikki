@@ -1,10 +1,10 @@
 export const THEME_CONFIG: App.Locals['config'] = {
   /** blog title */
-  title: 'Web日記（WebNikki）',
+  title: 'Web日記（web-nikki）',
   /** your name */
   author: 'geeknees',
   /** website description */
-  desc: "geeknees's Web日記（WebNikki）",
+  desc: "geeknees's Web日記（web-nikki）",
   /** your deployed domain */
   website: 'https://geeknees.github.io/',
   /** your locale */
@@ -19,7 +19,7 @@ export const THEME_CONFIG: App.Locals['config'] = {
     },
     {
       name: 'rss',
-      href: '/WebNikki/atom.xml'
+      href: '/web-nikki/atom.xml'
     },
     {
       name: 'twitter',
@@ -34,19 +34,19 @@ export const THEME_CONFIG: App.Locals['config'] = {
   navs: [
     {
       name: 'Posts',
-      href: '/WebNikki/posts/page/1'
+      href: '/web-nikki/posts/page/1'
     },
     {
       name: 'Archive',
-      href: '/WebNikki/archive'
+      href: '/web-nikki/archive'
     }
     // {
     //   name: 'Categories',
-    //   href: '/WebNikki/categories'
+    //   href: '/web-nikki/categories'
     // },
     // {
     //   name: 'About',
-    //   href: 'WebNikki/about'
+    //   href: 'web-nikki/about'
     // }
   ],
   /** your category name mapping, which the `path` will be shown in the url */
