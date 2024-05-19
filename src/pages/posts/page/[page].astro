@@ -18,11 +18,11 @@ const { page } = Astro.props
 ---
 
 <LayoutDefault>
-  <section contain-layout un-flex="~ col gap-7.5">
+  <section contain-layout un-flex='~ col gap-7.5'>
     {
       page.data.map((post) => (
         <Post post={post}>
-          <p class="line-clamp-4">{getPostDescription(post)}</p>
+          <p class='line-clamp-4'>{getPostDescription(post)}</p>
         </Post>
       ))
     }
@@ -30,10 +30,10 @@ const { page } = Astro.props
     <Pagination
       showLeft={Boolean(page.url.prev)}
       leftTitle={t('prev')}
-      leftUrl={page.url.prev}
+      leftUrl={`/web-nikki${page.url.prev}`}
       showRight={Boolean(page.url.next)}
       rightTitle={t('next')}
-      rightUrl={page.url.next}
+      rightUrl={`/web-nikki${page.url.next}`}
       currentPage={page.currentPage}
       totalPage={page.lastPage}
     />
