@@ -5,7 +5,6 @@ description: RubyKaigi2024は沖縄県那覇市の那覇文化芸術劇場なは
 pubDate: '2024-05-19T21:50'
 categories: []
 keywords: []
-banner: '../../../public/img/photo/IMG_6902.jpg'
 ---
 
 [RubyKaigi2024](https://rubykaigi.org/2024/)は沖縄県那覇市の那覇文化芸術劇場なはーとで開催されました。私は妻と子ども2人を連れて、家族で参加しました。2022年のTokyo Hacker HouseでDeFi部門で優勝した副賞を利用して、同じく沖縄で開催されたIVS2022 NAHAにも家族連れで参加した経験があります。その時、子どもたちはとても楽しんでいた様子でした。そのため、今回の沖縄開催について家族に聞いたところ、2つ返事で行きたいと言われたので、参加を調整しました。
