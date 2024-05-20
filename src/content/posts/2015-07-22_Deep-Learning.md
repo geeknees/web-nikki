@@ -4,7 +4,6 @@ description: Dockerをつかってdeep dremを動かしてみました。Mac OS�
 pubDate: '2015-07-22T11:14:18.309Z'
 categories: []
 keywords: []
-heroImage: '/img/medium/1__z4Nx3J9HqctTV8AzjRAcsg.jpeg'
 ---
 
 Dockerをつかってdeep dremを動かしてみました。Mac OSであれば下記を参考にセットアップするのが良い感じです。

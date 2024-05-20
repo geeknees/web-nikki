@@ -6,7 +6,6 @@ description: >-
 pubDate: '2023-05-14T11:50:17.187Z'
 categories: []
 keywords: []
-heroImage: '/img/medium/1__Ls4ctdN15WwlNx8tVTABfw.jpeg'
 ---
 
 長野県松本市で開催されたRubyKaigiに参加してきた。先月はEthGlobal Tokyo のハッカソンにて3日ほど家を空け（おかげでLensProtocolからTop10の賞をいただきました）、GW は家庭内で子供がウィルスと抗生物質とのアレルギー反応のようなものを起こし、雪崩れ込むような流れの中で松本に向かうことになった。とはいえ、普段からスケジュールが重なることは常であり、単純に優先度の問題である。心理的には純粋な高揚感を持ちながら、車中ではラップトップを開きながら駅弁を食べる。

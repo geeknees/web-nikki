@@ -4,7 +4,6 @@ description: 'http://rubykaigi.org/2018'
 pubDate: '2018-06-02T12:11:18.425Z'
 categories: []
 keywords: []
-heroImage: '/img/medium/1__DxFN__xu8ctPvB8g__NK8sJw.jpeg'
 ---
 
 [http://rubykaigi.org/2018](http://rubykaigi.org/2018)
