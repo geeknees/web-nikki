@@ -61,8 +61,8 @@ importers:
         specifier: ^0.59.0
         version: 0.59.0
       '@unocss/transformer-directives':
-        specifier: ^0.58.5
-        version: 0.58.5
+        specifier: ^0.61.6
+        version: 0.61.6
       bumpp:
         specifier: ^9.4.0
         version: 9.4.0
@@ -951,11 +951,11 @@ packages:
     resolution: {integrity: sha512-VIIln/1aD9cqU95+3IVZG9U1yO7Ys6RqyqtgD5pIJ77rg57v/2sey+S2ScFx3KB24Bal3FxAgHA5CdjFpQZldA==}
     engines: {node: '>=14'}
 
-  '@unocss/core@0.58.5':
-    resolution: {integrity: sha512-qbPqL+46hf1/UelQOwUwpAuvm6buoss43DPYHOPdfNJ+NTWkSpATQMF0JKT04QE0QRQbHNSHdMe9ariG+IIlCw==}
-
   '@unocss/core@0.61.5':
     resolution: {integrity: sha512-hB8zr2rnrCzz9x8ho2SAXQiYTEjwAPMiBzpaEe2C0+CFWeL1179h9508YVyZHHAzMyZILIG9YrVAWrrMdt2/Xg==}
+
+  '@unocss/core@0.61.6':
+    resolution: {integrity: sha512-z1O1fnMRvmX1zkvbKVZ7jKUOHZHw/tUBYDNpll1rx9wjmps/MHfv7K5C5FiOTaW9S9H5r2LSjW/MaMs0dxgoCw==}
 
   '@unocss/extractor-arbitrary-variants@0.61.5':
     resolution: {integrity: sha512-UB1EweAaJrUxv+h3n5FqoizKHrnUgUzkdmOdJTfV6xvow90ITqbUoza+L6iVMNfcrcXTx8QpDnWh6rhLRyKY+g==}
@@ -999,12 +999,12 @@ packages:
   '@unocss/reset@0.61.5':
     resolution: {integrity: sha512-5FKNsHnke9J1Z0T4prOZn9hkWh86c6Px+Oh3xf8mDd6dDw8CjzYMRxZEKti0gt13NcsO29G1vLGM7UjG1sCamg==}
 
-  '@unocss/rule-utils@0.58.5':
-    resolution: {integrity: sha512-w0sGJoeUGwMWLVFLEE9PDiv/fQcQqZnTIIQLYNCjTdqXDRlwTp9ACW0h47x/hAAIXdOtEOOBuTfjGD79GznUmA==}
-    engines: {node: '>=14'}
-
   '@unocss/rule-utils@0.61.5':
     resolution: {integrity: sha512-sCHnpCQoj3/ZmCjYo+oW3+4r5Z8kFI2snEL+miU2Uk0SqCgY1k0cUIYivj5L9ghp29p8VjEusX9M01QEZOYK7g==}
+    engines: {node: '>=14'}
+
+  '@unocss/rule-utils@0.61.6':
+    resolution: {integrity: sha512-OkAYqCWfbrBDBVfbulYx/6fWeEAVrw37/8VqsSlHD9UDc0Khz/M/4R+9oBhnNfdmqs3VccA2k7PdS5l5dghwzw==}
     engines: {node: '>=14'}
 
   '@unocss/scope@0.61.5':
@@ -1019,11 +1019,11 @@ packages:
   '@unocss/transformer-compile-class@0.61.5':
     resolution: {integrity: sha512-5WLi5MgRt8DJiANoWUK49noCgdyU/IKneGs3RJYDRNONEh2HdsL6ktACSRe9Y185ICGaD9MOk3cHBZALj07gew==}
 
-  '@unocss/transformer-directives@0.58.5':
-    resolution: {integrity: sha512-allspF5TlT1B2bJSZ1houHScXOTaTPlatLiEmgQKzr/m93rCvktokaO5J6qeN2VXQdpTIsxdA5B8//7UkfTuIA==}
-
   '@unocss/transformer-directives@0.61.5':
     resolution: {integrity: sha512-vQvgLicgFJt/rUTh3nd8yZz5l0AMoE9qmtZqpgb9iDMOTHUZrlWpI3hsVsU6AB9kvL/NoyMI16hVkP8x6y7b9g==}
+
+  '@unocss/transformer-directives@0.61.6':
+    resolution: {integrity: sha512-k+NzDoO0+uwL9HjOWzIFLWwsxzw7K1aIeq0ZbzbHRSsZmlUWVNEAZ+bczX/HMpjUglM/FrTWux600B/jMBshJg==}
 
   '@unocss/transformer-variant-group@0.61.5':
     resolution: {integrity: sha512-7Is7PChplNYTkLTiQm5fL5zFKf+LV6d9TpzNuwXNK2oa1pQARMXNmnHjFPpzaDgxpTjn9sqQON72gziuXcpOsg==}
@@ -4017,9 +4017,9 @@ snapshots:
       '@unocss/core': 0.61.5
       unconfig: 0.3.13
 
-  '@unocss/core@0.58.5': {}
-
   '@unocss/core@0.61.5': {}
+
+  '@unocss/core@0.61.6': {}
 
   '@unocss/extractor-arbitrary-variants@0.61.5':
     dependencies:
@@ -4091,14 +4091,14 @@ snapshots:
 
   '@unocss/reset@0.61.5': {}
 
-  '@unocss/rule-utils@0.58.5':
-    dependencies:
-      '@unocss/core': 0.58.5
-      magic-string: 0.30.7
-
   '@unocss/rule-utils@0.61.5':
     dependencies:
       '@unocss/core': 0.61.5
+      magic-string: 0.30.10
+
+  '@unocss/rule-utils@0.61.6':
+    dependencies:
+      '@unocss/core': 0.61.6
       magic-string: 0.30.10
 
   '@unocss/scope@0.61.5': {}
@@ -4120,16 +4120,16 @@ snapshots:
     dependencies:
       '@unocss/core': 0.61.5
 
-  '@unocss/transformer-directives@0.58.5':
-    dependencies:
-      '@unocss/core': 0.58.5
-      '@unocss/rule-utils': 0.58.5
-      css-tree: 2.3.1
-
   '@unocss/transformer-directives@0.61.5':
     dependencies:
       '@unocss/core': 0.61.5
       '@unocss/rule-utils': 0.61.5
+      css-tree: 2.3.1
+
+  '@unocss/transformer-directives@0.61.6':
+    dependencies:
+      '@unocss/core': 0.61.6
+      '@unocss/rule-utils': 0.61.6
       css-tree: 2.3.1
 
   '@unocss/transformer-variant-group@0.61.5':
@@ -4608,7 +4608,7 @@ snapshots:
   css-tree@2.3.1:
     dependencies:
       mdn-data: 2.0.30
-      source-map-js: 1.0.2
+      source-map-js: 1.2.0
 
   cssesc@3.0.0: {}
 
