@@ -43,7 +43,7 @@ export function getPostDescription(post: Post) {
 }
 
 export function formatDate(date?: Date) {
-  if(!date) return '--'
+  if (!date) return '--'
   const year = date.getFullYear().toString().padStart(4, '0')
   const month = (date.getMonth() + 1).toString().padStart(2, '0')
   const day = date.getDate().toString().padStart(2, '0')
@@ -51,7 +51,12 @@ export function formatDate(date?: Date) {
   return `${year}-${month}-${day}`
 }
 
-export function getPathFromCategory(category: string, category_map: {name: string, path: string}[]) {
-  const mappingPath = category_map.find(l => l.name === category)
+export function getPathFromCategory(
+  category: string,
+  category_map: { name: string; path: string }[]
+) {
+  const mappingPath = category_map.find((l) => l.name === category)
   return mappingPath ? mappingPath.path : category
 }
+
+export const isProduction = process.env.NODE_ENV === 'production'
