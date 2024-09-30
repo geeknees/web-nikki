@@ -70,8 +70,8 @@ importers:
         specifier: ^0.59.0
         version: 0.59.0
       '@unocss/transformer-directives':
-        specifier: ^0.58.5
-        version: 0.58.5
+        specifier: ^0.63.1
+        version: 0.63.1
       bumpp:
         specifier: ^9.4.0
         version: 9.4.0
@@ -1203,11 +1203,11 @@ packages:
     resolution: {integrity: sha512-VIIln/1aD9cqU95+3IVZG9U1yO7Ys6RqyqtgD5pIJ77rg57v/2sey+S2ScFx3KB24Bal3FxAgHA5CdjFpQZldA==}
     engines: {node: '>=14'}
 
-  '@unocss/core@0.58.5':
-    resolution: {integrity: sha512-qbPqL+46hf1/UelQOwUwpAuvm6buoss43DPYHOPdfNJ+NTWkSpATQMF0JKT04QE0QRQbHNSHdMe9ariG+IIlCw==}
-
   '@unocss/core@0.61.5':
     resolution: {integrity: sha512-hB8zr2rnrCzz9x8ho2SAXQiYTEjwAPMiBzpaEe2C0+CFWeL1179h9508YVyZHHAzMyZILIG9YrVAWrrMdt2/Xg==}
+
+  '@unocss/core@0.63.1':
+    resolution: {integrity: sha512-scg53c6vw8cRsX4DbUO+MlTXicA9GWztm6PW0lsisJxXrdbQQCd+J+PIhrxLUExxeNqxTKsL3Msy9bwJU5uUsQ==}
 
   '@unocss/extractor-arbitrary-variants@0.61.5':
     resolution: {integrity: sha512-UB1EweAaJrUxv+h3n5FqoizKHrnUgUzkdmOdJTfV6xvow90ITqbUoza+L6iVMNfcrcXTx8QpDnWh6rhLRyKY+g==}
@@ -1251,12 +1251,12 @@ packages:
   '@unocss/reset@0.61.5':
     resolution: {integrity: sha512-5FKNsHnke9J1Z0T4prOZn9hkWh86c6Px+Oh3xf8mDd6dDw8CjzYMRxZEKti0gt13NcsO29G1vLGM7UjG1sCamg==}
 
-  '@unocss/rule-utils@0.58.5':
-    resolution: {integrity: sha512-w0sGJoeUGwMWLVFLEE9PDiv/fQcQqZnTIIQLYNCjTdqXDRlwTp9ACW0h47x/hAAIXdOtEOOBuTfjGD79GznUmA==}
-    engines: {node: '>=14'}
-
   '@unocss/rule-utils@0.61.5':
     resolution: {integrity: sha512-sCHnpCQoj3/ZmCjYo+oW3+4r5Z8kFI2snEL+miU2Uk0SqCgY1k0cUIYivj5L9ghp29p8VjEusX9M01QEZOYK7g==}
+    engines: {node: '>=14'}
+
+  '@unocss/rule-utils@0.63.1':
+    resolution: {integrity: sha512-z7WQ8lKq7p6sS/6Yl1pStcA2WyxxD7H1i86iXa2orWayW8KtrIJbdCXFYEsj3sOkMKLqpG5w65P+103dO2jUhQ==}
     engines: {node: '>=14'}
 
   '@unocss/scope@0.61.5':
@@ -1271,11 +1271,11 @@ packages:
   '@unocss/transformer-compile-class@0.61.5':
     resolution: {integrity: sha512-5WLi5MgRt8DJiANoWUK49noCgdyU/IKneGs3RJYDRNONEh2HdsL6ktACSRe9Y185ICGaD9MOk3cHBZALj07gew==}
 
-  '@unocss/transformer-directives@0.58.5':
-    resolution: {integrity: sha512-allspF5TlT1B2bJSZ1houHScXOTaTPlatLiEmgQKzr/m93rCvktokaO5J6qeN2VXQdpTIsxdA5B8//7UkfTuIA==}
-
   '@unocss/transformer-directives@0.61.5':
     resolution: {integrity: sha512-vQvgLicgFJt/rUTh3nd8yZz5l0AMoE9qmtZqpgb9iDMOTHUZrlWpI3hsVsU6AB9kvL/NoyMI16hVkP8x6y7b9g==}
+
+  '@unocss/transformer-directives@0.63.1':
+    resolution: {integrity: sha512-mWVcQqVXj5OtUzfwc9B2/CRPYVHqkoj+AFfhU8RZ6e1nPgDKtR9JLt0jypTvv/PMo56vPJUTbpBBvXU+vvQwQA==}
 
   '@unocss/transformer-variant-group@0.61.5':
     resolution: {integrity: sha512-7Is7PChplNYTkLTiQm5fL5zFKf+LV6d9TpzNuwXNK2oa1pQARMXNmnHjFPpzaDgxpTjn9sqQON72gziuXcpOsg==}
@@ -1617,6 +1617,10 @@ packages:
 
   css-tree@2.3.1:
     resolution: {integrity: sha512-6Fv1DV/TYw//QF5IzQdqsNDjx/wc8TrMBZsqjL9eW01tWb7R7k/mq+/VXfJCl7SoD5emsJop9cOByJZfs8hYIw==}
+    engines: {node: ^10 || ^12.20.0 || ^14.13.0 || >=15.0.0}
+
+  css-tree@3.0.0:
+    resolution: {integrity: sha512-o88DVQ6GzsABn1+6+zo2ct801dBO5OASVyxbbvA2W20ue2puSh/VOuqUj90eUeMSX/xqGqBmOKiRQN7tJOuBXw==}
     engines: {node: ^10 || ^12.20.0 || ^14.13.0 || >=15.0.0}
 
   css-what@6.1.0:
@@ -2216,10 +2220,6 @@ packages:
   magic-string@0.30.11:
     resolution: {integrity: sha512-+Wri9p0QHMy+545hKww7YAu5NyzF8iomPL/RQazugQ9+Ez4Ic3mERMd8ZTX5rfK944j+560ZJi8iAwgak1Ac7A==}
 
-  magic-string@0.30.7:
-    resolution: {integrity: sha512-8vBuFF/I/+OSLRmdf2wwFCJCz+nSn0m6DPvGH1fS/KiQoSaR+sETbov0eIk9KhEKy8CYqIkIAnbohxT/4H0kuA==}
-    engines: {node: '>=12'}
-
   markdown-extensions@2.0.0:
     resolution: {integrity: sha512-o5vL7aDWatOTX8LzaS1WMoaoxIiLRQJuIKKe2wAw6IeULDHaqbiqiggmx+pKvZDb1Sj+pE46Sn1T7lCqfFtg1Q==}
     engines: {node: '>=16'}
@@ -2287,6 +2287,9 @@ packages:
 
   mdn-data@2.0.30:
     resolution: {integrity: sha512-GaqWWShW4kv/G9IEucWScBx9G1/vsFZZJUO+tD26M8J8z3Kw5RDQjaoZe03YAClgeS/SWPOcb4nkFBTEi5DUEA==}
+
+  mdn-data@2.10.0:
+    resolution: {integrity: sha512-qq7C3EtK3yJXMwz1zAab65pjl+UhohqMOctTgcqjLOWABqmwj+me02LSsCuEUxnst9X1lCBpoE0WArGKgdGDzw==}
 
   mdurl@2.0.0:
     resolution: {integrity: sha512-Lf+9+2r+Tdp5wXDXC4PcIBjTDtq4UKjCPMQhKIuzpJNW0b96kVqSwW0bT7FhRSfmAiFYgP+SCRvdrDozfh0U5w==}
@@ -4412,9 +4415,9 @@ snapshots:
       '@unocss/core': 0.61.5
       unconfig: 0.3.13
 
-  '@unocss/core@0.58.5': {}
-
   '@unocss/core@0.61.5': {}
+
+  '@unocss/core@0.63.1': {}
 
   '@unocss/extractor-arbitrary-variants@0.61.5':
     dependencies:
@@ -4486,15 +4489,15 @@ snapshots:
 
   '@unocss/reset@0.61.5': {}
 
-  '@unocss/rule-utils@0.58.5':
-    dependencies:
-      '@unocss/core': 0.58.5
-      magic-string: 0.30.7
-
   '@unocss/rule-utils@0.61.5':
     dependencies:
       '@unocss/core': 0.61.5
-      magic-string: 0.30.10
+      magic-string: 0.30.11
+
+  '@unocss/rule-utils@0.63.1':
+    dependencies:
+      '@unocss/core': 0.63.1
+      magic-string: 0.30.11
 
   '@unocss/scope@0.61.5': {}
 
@@ -4515,17 +4518,17 @@ snapshots:
     dependencies:
       '@unocss/core': 0.61.5
 
-  '@unocss/transformer-directives@0.58.5':
-    dependencies:
-      '@unocss/core': 0.58.5
-      '@unocss/rule-utils': 0.58.5
-      css-tree: 2.3.1
-
   '@unocss/transformer-directives@0.61.5':
     dependencies:
       '@unocss/core': 0.61.5
       '@unocss/rule-utils': 0.61.5
       css-tree: 2.3.1
+
+  '@unocss/transformer-directives@0.63.1':
+    dependencies:
+      '@unocss/core': 0.63.1
+      '@unocss/rule-utils': 0.63.1
+      css-tree: 3.0.0
 
   '@unocss/transformer-variant-group@0.61.5':
     dependencies:
@@ -5023,7 +5026,12 @@ snapshots:
   css-tree@2.3.1:
     dependencies:
       mdn-data: 2.0.30
-      source-map-js: 1.0.2
+      source-map-js: 1.2.0
+
+  css-tree@3.0.0:
+    dependencies:
+      mdn-data: 2.10.0
+      source-map-js: 1.2.0
 
   css-what@6.1.0: {}
 
@@ -5747,10 +5755,6 @@ snapshots:
     dependencies:
       '@jridgewell/sourcemap-codec': 1.5.0
 
-  magic-string@0.30.7:
-    dependencies:
-      '@jridgewell/sourcemap-codec': 1.4.15
-
   markdown-extensions@2.0.0: {}
 
   markdown-it@14.0.0:
@@ -5945,6 +5949,8 @@ snapshots:
       '@types/mdast': 4.0.3
 
   mdn-data@2.0.30: {}
+
+  mdn-data@2.10.0: {}
 
   mdurl@2.0.0: {}
 
