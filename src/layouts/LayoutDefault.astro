@@ -4,6 +4,7 @@ import '~/styles/index.css'
 import '~/styles/heti.min.css'
 import Header from '~/components/Header.astro'
 import Footer from '~/components/Footer.astro'
+import GoogleAnalytics from '~/components/GoogleAnalytics.astro'
 import { SEO } from 'astro-seo'
 import { getImage } from 'astro:assets'
 
@@ -66,19 +67,7 @@ const optimizedImage = new URL(
         }
       }}
     />
-    <!-- Google tag (gtag.js) -->
-    <script
-      type='text/partytown'
-      src='https://www.googletagmanager.com/gtag/js?id=G-C536MZEKVL'></script>
-    <script type='text/partytown'>
-      window.dataLayer = window.dataLayer || []
-      function gtag() {
-        dataLayer.push(arguments)
-      }
-      gtag('js', new Date())
-
-      gtag('config', 'G-C536MZEKVL')
-    </script>
+    <GoogleAnalytics />
   </head>
   <body>
     <div
