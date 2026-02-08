@@ -63,6 +63,7 @@ a.normal:hover {
 
 article.heti {
   margin-top: 20px;
+  font-family: theme('fontFamily.sans');
 }
 
 article.heti a:hover {
