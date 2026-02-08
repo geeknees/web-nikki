@@ -22,7 +22,7 @@ const title = props.title
   ? `${props.title} - ${themeConfig.title}`
   : `${themeConfig.title}`
 const desc = props.desc ?? themeConfig.desc
-const canonical = themeConfig.website
+const canonical = Astro.url.toString()
 
 const image =
   props.banner &&
@@ -43,6 +43,7 @@ const optimizedImage = new URL(
     <link rel="sitemap" href="/web-nikki/sitemap-index.xml" />
     <SEO
       charset='utf-8'
+      canonical={canonical}
       title={title}
       description={desc}
       extend={{
