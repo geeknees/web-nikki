@@ -15,9 +15,22 @@ export const getStaticPaths = (async ({ paginate }) => {
 type Props = InferGetStaticPropsType<typeof getStaticPaths>
 
 const { page } = Astro.props
+const basePath = Astro.url.pathname.split('/posts/page/')[0] || ''
+const withBasePath = (path: string) => {
+  let normalized = path.startsWith('/') ? path : `/${path}`
+  if (basePath) {
+    const baseWithSlash = `${basePath}/`
+    while (normalized.startsWith(baseWithSlash)) {
+      normalized = normalized.slice(basePath.length)
+      normalized = normalized.startsWith('/') ? normalized : `/${normalized}`
+    }
+    return `${basePath}${normalized}`
+  }
+  return normalized
+}
 ---
 
-<LayoutDefault>
+<LayoutDefault noindex={page.currentPage > 1}>
   <section contain-layout un-flex='~ col gap-7.5'>
     {
       page.data.map((post) => (
@@ -30,10 +43,10 @@ const { page } = Astro.props
     <Pagination
       showLeft={Boolean(page.url.prev)}
       leftTitle={t('prev')}
-      leftUrl={`/web-nikki${page.url.prev}`}
+      leftUrl={page.url.prev ? withBasePath(page.url.prev) : ''}
       showRight={Boolean(page.url.next)}
       rightTitle={t('next')}
-      rightUrl={`/web-nikki${page.url.next}`}
+      rightUrl={page.url.next ? withBasePath(page.url.next) : ''}
       currentPage={page.currentPage}
       totalPage={page.lastPage}
     />
