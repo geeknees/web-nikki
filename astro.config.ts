@@ -35,7 +35,9 @@ export default defineConfig({
       injectReset: true,
     }),
     robotsTxt(),
-    sitemap(),
+    sitemap({
+      filter: (page) => !page.includes("/posts/page/"),
+    }),
     mdx(),
     partytown({
       config: {

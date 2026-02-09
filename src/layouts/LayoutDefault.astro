@@ -12,6 +12,7 @@ interface Props {
   title?: string
   desc?: string
   banner?: ImageMetadata
+  noindex?: boolean
 }
 
 const props = Astro.props
@@ -23,6 +24,7 @@ const title = props.title
   : `${themeConfig.title}`
 const desc = props.desc ?? themeConfig.desc
 const canonical = Astro.url.toString()
+const noindex = props.noindex ?? false
 
 const image =
   props.banner &&
@@ -44,6 +46,7 @@ const optimizedImage = new URL(
     <SEO
       charset='utf-8'
       canonical={canonical}
+      noindex={noindex}
       title={title}
       description={desc}
       extend={{
