@@ -7,23 +7,30 @@ import Footer from '~/components/Footer.astro'
 import GoogleAnalytics from '~/components/GoogleAnalytics.astro'
 import { SEO } from 'astro-seo'
 import { getImage } from 'astro:assets'
+import {
+  createArticleStructuredData,
+  createWebSiteStructuredData,
+  normalizeCanonicalUrl
+} from '~/utils/seo'
 
 interface Props {
   title?: string
   desc?: string
   banner?: ImageMetadata
   noindex?: boolean
+  publishedTime?: Date
 }
 
 const props = Astro.props
 const themeConfig = Astro.locals.config
 const { header } = Astro.locals.config
 
+const pageTitle = props.title ?? themeConfig.title
 const title = props.title
   ? `${props.title} - ${themeConfig.title}`
   : `${themeConfig.title}`
 const desc = props.desc ?? themeConfig.desc
-const canonical = Astro.url.toString()
+const canonical = normalizeCanonicalUrl(Astro.url)
 const noindex = props.noindex ?? false
 
 const image =
@@ -36,13 +43,30 @@ const optimizedImage = new URL(
   image?.src ?? '/web-nikki/placeholder.png',
   Astro.url
 ).toString()
+const structuredData = props.publishedTime
+  ? createArticleStructuredData({
+      author: themeConfig.author,
+      canonical,
+      description: desc,
+      imageUrl: optimizedImage,
+      inLanguage: themeConfig.locale,
+      publishedTime: props.publishedTime,
+      title: pageTitle
+    })
+  : createWebSiteStructuredData({
+      author: themeConfig.author,
+      canonical,
+      description: desc,
+      inLanguage: themeConfig.locale,
+      title: pageTitle
+    })
 ---
 
 <html lang={themeConfig.locale}>
   <head>
     <meta name='viewport' content='width=device-width' />
     <meta name='generator' content={Astro.generator} />
-    <link rel="sitemap" href="/web-nikki/sitemap-index.xml" />
+    <link rel="sitemap" href="/web-nikki/sitemap.xml" />
     <SEO
       charset='utf-8'
       canonical={canonical}
@@ -66,11 +90,16 @@ const optimizedImage = new URL(
       openGraph={{
         basic: {
           title: title,
-          type: 'article',
+          type: props.publishedTime ? 'article' : 'website',
           image: optimizedImage,
           url: canonical
         }
       }}
+    />
+    <script
+      type='application/ld+json'
+      is:inline
+      set:html={JSON.stringify(structuredData)}
     />
     <GoogleAnalytics />
   </head>
