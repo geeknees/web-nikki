@@ -15,7 +15,7 @@ execFileSync('pnpm', ['build'], {
 
 const homepageHtml = readFileSync(join(cwd, 'dist/index.html'), 'utf8')
 const robotsTxt = readFileSync(join(cwd, 'dist/robots.txt'), 'utf8')
-const sitemapIndex = readFileSync(join(cwd, 'dist/sitemap-index.xml'), 'utf8')
+const sitemapXml = readFileSync(join(cwd, 'dist/sitemap.xml'), 'utf8')
 const articleHtml = readFileSync(
   join(cwd, 'dist/posts/2026-03-05/index.html'),
   'utf8'
@@ -29,10 +29,12 @@ assert.match(
 assert.match(homepageHtml, /<script type="application\/ld\+json">/)
 assert.match(homepageHtml, /"@type":"WebSite"/)
 
-assert.match(robotsTxt, /Sitemap: https:\/\/geeknees\.github\.io\/web-nikki\/sitemap-index\.xml/)
+assert.match(robotsTxt, /Sitemap: https:\/\/geeknees\.github\.io\/web-nikki\/sitemap\.xml/)
+assert.match(sitemapXml, /<urlset xmlns="http:\/\/www\.sitemaps\.org\/schemas\/sitemap\/0\.9">/)
+assert.match(sitemapXml, /<loc>https:\/\/geeknees\.github\.io\/web-nikki\/<\/loc>/)
 assert.match(
-  sitemapIndex,
-  /<loc>https:\/\/geeknees\.github\.io\/web-nikki\/sitemap-0\.xml<\/loc>/
+  sitemapXml,
+  /<loc>https:\/\/geeknees\.github\.io\/web-nikki\/posts\/2026-03-05\/<\/loc>/
 )
 
 assert.match(articleHtml, /"@type":"BlogPosting"/)

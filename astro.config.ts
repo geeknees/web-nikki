@@ -2,7 +2,6 @@ import { defineConfig } from "astro/config";
 import UnoCSS from "unocss/astro";
 import { THEME_CONFIG } from "./src/theme.config";
 import robotsTxt from "astro-robots-txt";
-import sitemap from "@astrojs/sitemap";
 import partytown from "@astrojs/partytown";
 
 import mdx from "@astrojs/mdx";
@@ -34,9 +33,8 @@ export default defineConfig({
     UnoCSS({
       injectReset: true,
     }),
-    robotsTxt(),
-    sitemap({
-      filter: (page) => !page.includes("/posts/page/"),
+    robotsTxt({
+      sitemap: `${THEME_CONFIG.website}web-nikki/sitemap.xml`,
     }),
     mdx(),
     partytown({
