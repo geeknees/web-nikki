@@ -2,6 +2,8 @@ import { getCollection } from 'astro:content'
 import sanitizeHtml from 'sanitize-html'
 import MarkdownIt from 'markdown-it'
 
+export { getKeywordSummary, getPostTaxonomySummary } from './post-taxonomy'
+
 export async function getCategories() {
   const posts = await getPosts()
 

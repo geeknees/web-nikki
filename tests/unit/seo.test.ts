@@ -8,6 +8,10 @@ import {
   createWebSiteStructuredData,
   normalizeCanonicalUrl
 } from '../../src/utils/seo.ts'
+import {
+  getKeywordSummary,
+  getPostTaxonomySummary
+} from '../../src/utils/post-taxonomy.ts'
 import { getHomepageCategorySelections } from '../../src/content/post-categories.ts'
 
 const canonical = normalizeCanonicalUrl(
@@ -50,6 +54,28 @@ assert.equal(
   'https://geeknees.github.io/web-nikki/posts/2026-03-05/'
 )
 assert.equal(articleStructuredData.keywords, 'SNS, X, YouTube')
+
+assert.equal(
+  getKeywordSummary({
+    slug: '2026-03-05',
+    data: {
+      keywords: ['SNS', 'X', 'YouTube', 'アルゴリズム']
+    }
+  } as Post),
+  'SNS / X / YouTube'
+)
+
+assert.equal(
+  getPostTaxonomySummary({
+    slug: '2026-03-05',
+    data: {
+      categories: ['AIとインターネット', '教育'],
+      keywords: ['SNS', 'X', 'YouTube'],
+      pubDate: new Date('2026-03-05T00:00:00.000Z')
+    }
+  } as Post, { includeDate: true }),
+  '2026-03-05 — AIとインターネット / 教育 — SNS / X / YouTube'
+)
 
 const homepageSelections = getHomepageCategorySelections(
   [

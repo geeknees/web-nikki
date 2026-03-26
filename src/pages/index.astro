@@ -1,7 +1,7 @@
 ---
 import LayoutDefault from '~/layouts/LayoutDefault.astro'
 import Post from '~/components/Post.astro'
-import { getPosts, getPostDescription } from '~/utils'
+import { getPosts, getPostDescription, getKeywordSummary } from '~/utils'
 import Pagination from '~/components/Pagination.astro'
 import ListSection from '~/components/ListSection.astro'
 import ListItem from '~/components/ListItem.astro'
@@ -15,10 +15,6 @@ const homepageCategorySelections = getHomepageCategorySelections(
 )
 
 const { translate: t } = Astro.locals
-
-function getKeywordSummary(post: Post) {
-  return post.data.keywords.slice(0, 3).join(' / ')
-}
 ---
 
 <LayoutDefault>

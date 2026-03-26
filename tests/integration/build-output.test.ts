@@ -14,6 +14,7 @@ execFileSync('pnpm', ['build'], {
 })
 
 const homepageHtml = readFileSync(join(cwd, 'dist/index.html'), 'utf8')
+const archiveHtml = readFileSync(join(cwd, 'dist/archive/index.html'), 'utf8')
 const robotsTxt = readFileSync(join(cwd, 'dist/robots.txt'), 'utf8')
 const sitemapXml = readFileSync(join(cwd, 'dist/sitemap.xml'), 'utf8')
 const articleHtml = readFileSync(
@@ -26,8 +27,12 @@ assert.match(
   homepageHtml,
   /<link rel="canonical" href="https:\/\/geeknees\.github\.io\/web-nikki\/">/
 )
+assert.match(homepageHtml, /href="\/web-nikki\/categories"/)
 assert.match(homepageHtml, /<script type="application\/ld\+json">/)
 assert.match(homepageHtml, /"@type":"WebSite"/)
+
+assert.match(archiveHtml, /教育 \/ AIとインターネット/)
+assert.match(archiveHtml, /SNS \/ X \/ YouTube/)
 
 assert.match(robotsTxt, /Sitemap: https:\/\/geeknees\.github\.io\/web-nikki\/sitemap\.xml/)
 assert.match(sitemapXml, /<urlset xmlns="http:\/\/www\.sitemaps\.org\/schemas\/sitemap\/0\.9">/)
@@ -43,6 +48,7 @@ assert.match(
   articleHtml,
   /<link rel="canonical" href="https:\/\/geeknees\.github\.io\/web-nikki\/posts\/2026-03-05\/">/
 )
+assert.match(articleHtml, /href="\/web-nikki\/categories\/AIとインターネット"/)
 assert.match(articleHtml, /<h2 class="post-title">キーワード<\/h2>/)
 assert.match(articleHtml, /# SNS/)
 

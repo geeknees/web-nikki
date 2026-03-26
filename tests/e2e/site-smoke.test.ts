@@ -26,6 +26,7 @@ assert.match(
   homepageHtml,
   /href="\/web-nikki\/posts\/2024-10-27_the_art_of_maintaining_the_world\/"/
 )
+assert.match(homepageHtml, /href="\/web-nikki\/categories"/)
 assert.match(homepageHtml, /AI添削 \/ 教育 \/ 品質管理/)
 assert.match(homepageHtml, /テーマ別に読む/)
 
@@ -50,6 +51,7 @@ assert.match(
 )
 assert.match(firstPostHtml, /<h2 class="post-title">キーワード<\/h2>/)
 assert.match(firstPostHtml, /# SNS/)
+assert.match(firstPostHtml, /href="\/web-nikki\/categories\/AIとインターネット"/)
 assert.match(firstPostHtml, /<meta name="keywords" content="[^"]+">/)
 assert.match(firstPostHtml, /<meta name="robots" content="index, follow">/)
 assert.match(firstPostHtml, /<article class="heti">/)

@@ -1,7 +1,7 @@
 ---
 import LayoutDefault from '~/layouts/LayoutDefault.astro'
 import ListSection from '~/components/ListSection.astro'
-import { getCategories, formatDate, getPathFromCategory } from '~/utils'
+import { getCategories, getPathFromCategory, getPostTaxonomySummary } from '~/utils'
 import ListItem from '~/components/ListItem.astro'
 import { THEME_CONFIG } from '~/theme.config'
 
@@ -27,7 +27,7 @@ const { name } = Astro.params
         <ListItem
           title={post.data.title}
           href={`/web-nikki/posts/${post.slug}/`}
-          description={formatDate(post.data.pubDate)}
+          description={getPostTaxonomySummary(post, { includeDate: true })}
         />
       ))
     }
