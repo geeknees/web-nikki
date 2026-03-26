@@ -14,6 +14,11 @@ assert.ok(
 )
 
 const homepageHtml = readFileSync(homepagePath, 'utf8')
+assert.match(
+  homepageHtml,
+  /href="\/web-nikki\/posts\/2024-05-19_rubykaigi\/"/
+)
+
 const firstPostHrefMatch = homepageHtml.match(
   /href="\/web-nikki\/posts\/([^"]+)\/"/
 )
