@@ -8,6 +8,7 @@ import {
   createWebSiteStructuredData,
   normalizeCanonicalUrl
 } from '../../src/utils/seo.ts'
+import { getHomepageCategorySelections } from '../../src/content/post-categories.ts'
 
 const canonical = normalizeCanonicalUrl(
   new URL('https://geeknees.github.io/web-nikki')
@@ -46,6 +47,53 @@ assert.equal(
 assert.equal(
   articleStructuredData.mainEntityOfPage,
   'https://geeknees.github.io/web-nikki/posts/2026-03-05/'
+)
+
+const homepageSelections = getHomepageCategorySelections(
+  [
+    {
+      slug: '2026-03-05'
+    },
+    {
+      slug: '2025-12-01'
+    },
+    {
+      slug: '2025-07-04'
+    },
+    {
+      slug: '2025-04-21_rubykaigi'
+    },
+    {
+      slug: '2025-03-23'
+    },
+    {
+      slug: '2024-11-19_ai_and_human'
+    },
+    {
+      slug: '2024-10-27_the_art_of_maintaining_the_world'
+    },
+    {
+      slug: '2024-05-19_rubykaigi'
+    },
+    {
+      slug: '2020-08-01'
+    },
+    {
+      slug: '2021-09-23'
+    }
+  ] as Post[],
+  ['2026-03-05', '2025-12-01', '2025-07-04', '2025-04-21_rubykaigi', '2025-03-23']
+)
+
+assert.deepEqual(
+  homepageSelections.map(({ category, post }) => [category, post.slug]),
+  [
+    ['仕事と組織・プロダクト', '2020-08-01'],
+    ['教育・学習', '2024-11-19_ai_and_human'],
+    ['AI・インターネット・未来', '2024-10-27_the_art_of_maintaining_the_world'],
+    ['RubyKaigi・技術コミュニティ', '2024-05-19_rubykaigi'],
+    ['個人史・文化', '2021-09-23']
+  ]
 )
 
 console.log('unit: seo helpers passed')

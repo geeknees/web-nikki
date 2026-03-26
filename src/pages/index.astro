@@ -5,17 +5,14 @@ import { getPosts, getPostDescription } from '~/utils'
 import Pagination from '~/components/Pagination.astro'
 import ListSection from '~/components/ListSection.astro'
 import ListItem from '~/components/ListItem.astro'
+import { getHomepageCategorySelections } from '~/content/post-categories'
 
 const allPosts = await getPosts()
 const posts = allPosts.slice(0, 5)
-const featuredSlugs = [
-  '2024-05-19_rubykaigi',
-  '2024-08-04_ai_human_collab',
-  '2023-05-14_rubykaigi'
-]
-const featuredPosts = featuredSlugs
-  .map((slug) => allPosts.find((post) => post.slug === slug))
-  .filter((post): post is Post => Boolean(post))
+const homepageCategorySelections = getHomepageCategorySelections(
+  allPosts,
+  posts.map((post) => post.slug)
+)
 
 const { translate: t } = Astro.locals
 ---
@@ -29,13 +26,13 @@ const { translate: t } = Astro.locals
         </Post>
       ))
     }
-    <ListSection title='過去の記事から'>
+    <ListSection title='テーマ別に読む'>
       {
-        featuredPosts.map((post) => (
+        homepageCategorySelections.map(({ category, post }) => (
           <ListItem
             title={post.data.title}
             href={`/web-nikki/posts/${post.slug}/`}
-            description={getPostDescription(post)}
+            description={`${category} — ${getPostDescription(post)}`}
           />
         ))
       }

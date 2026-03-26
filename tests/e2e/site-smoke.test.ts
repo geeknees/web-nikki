@@ -18,6 +18,15 @@ assert.match(
   homepageHtml,
   /href="\/web-nikki\/posts\/2024-05-19_rubykaigi\/"/
 )
+assert.match(
+  homepageHtml,
+  /href="\/web-nikki\/posts\/2024-11-19_ai_and_human\/"/
+)
+assert.match(
+  homepageHtml,
+  /href="\/web-nikki\/posts\/2024-10-27_the_art_of_maintaining_the_world\/"/
+)
+assert.match(homepageHtml, /テーマ別に読む/)
 
 const firstPostHrefMatch = homepageHtml.match(
   /href="\/web-nikki\/posts\/([^"]+)\/"/
