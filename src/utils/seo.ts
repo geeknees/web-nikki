@@ -23,6 +23,7 @@ type WebSiteStructuredDataInput = {
 
 type ArticleStructuredDataInput = WebSiteStructuredDataInput & {
   imageUrl: string
+  keywords?: string[]
   publishedTime: Date
 }
 
@@ -65,6 +66,7 @@ export function createArticleStructuredData({
   description,
   imageUrl,
   inLanguage,
+  keywords,
   publishedTime,
   title
 }: ArticleStructuredDataInput): StructuredData {
@@ -80,6 +82,7 @@ export function createArticleStructuredData({
     headline: title,
     image: imageUrl,
     inLanguage,
+    ...(keywords?.length ? { keywords: keywords.join(', ') } : {}),
     mainEntityOfPage: canonical,
     url: canonical
   }

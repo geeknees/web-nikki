@@ -2,18 +2,18 @@
 // ABOUTME: Keeps internal-link curation aligned with the content metadata stored in each article.
 
 export const HOMEPAGE_POST_CATEGORY_ORDER = [
-  '仕事と組織',
   '教育',
   'AIとインターネット',
-  'RubyKaigi',
-  '個人史と暮らし'
+  '仕事と組織',
+  '個人史と暮らし',
+  'RubyKaigi'
 ] as const
 
 type HomepagePostCategory = (typeof HOMEPAGE_POST_CATEGORY_ORDER)[number]
 
 export function getHomepageCategoryName(post: Post): HomepagePostCategory {
-  const category = HOMEPAGE_POST_CATEGORY_ORDER.find((candidate) =>
-    post.data.categories.includes(candidate)
+  const category = post.data.categories.find((candidate) =>
+    HOMEPAGE_POST_CATEGORY_ORDER.includes(candidate as HomepagePostCategory)
   )
 
   if (!category) {

@@ -34,6 +34,7 @@ const articleStructuredData = createArticleStructuredData({
   description: 'SNS は壊れている。',
   imageUrl: 'https://geeknees.github.io/web-nikki/placeholder.png',
   inLanguage: 'ja-jp',
+  keywords: ['SNS', 'X', 'YouTube'],
   publishedTime: new Date('2026-03-05T00:00:00.000Z'),
   title: 'SNS は壊れている – 特にX（旧Twitter）とYouTube'
 })
@@ -48,6 +49,7 @@ assert.equal(
   articleStructuredData.mainEntityOfPage,
   'https://geeknees.github.io/web-nikki/posts/2026-03-05/'
 )
+assert.equal(articleStructuredData.keywords, 'SNS, X, YouTube')
 
 const homepageSelections = getHomepageCategorySelections(
   [
@@ -98,11 +100,11 @@ const homepageSelections = getHomepageCategorySelections(
 assert.deepEqual(
   homepageSelections.map(({ category, post }) => [category, post.slug]),
   [
-    ['仕事と組織', '2020-08-01'],
     ['教育', '2024-11-19_ai_and_human'],
     ['AIとインターネット', '2024-10-27_the_art_of_maintaining_the_world'],
-    ['RubyKaigi', '2024-05-19_rubykaigi'],
-    ['個人史と暮らし', '2021-09-23']
+    ['仕事と組織', '2020-08-01'],
+    ['個人史と暮らし', '2021-09-23'],
+    ['RubyKaigi', '2024-05-19_rubykaigi']
   ]
 )
 
