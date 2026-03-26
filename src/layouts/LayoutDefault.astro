@@ -17,6 +17,7 @@ interface Props {
   title?: string
   desc?: string
   banner?: ImageMetadata
+  keywords?: string[]
   noindex?: boolean
   publishedTime?: Date
 }
@@ -50,6 +51,7 @@ const structuredData = props.publishedTime
       description: desc,
       imageUrl: optimizedImage,
       inLanguage: themeConfig.locale,
+      keywords: props.keywords,
       publishedTime: props.publishedTime,
       title: pageTitle
     })
@@ -78,6 +80,9 @@ const structuredData = props.publishedTime
           { rel: 'icon', href: '/web-nikki/favicon.svg', type: 'image/svg+xml' }
         ],
         meta: [
+          ...(props.keywords?.length
+            ? [{ name: 'keywords', content: props.keywords.join(', ') }]
+            : []),
           { name: 'twitter:image:src', content: optimizedImage },
           { name: 'twitter:image:alt', content: desc },
           { name: 'twitter:creator', content: header.twitter },

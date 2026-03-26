@@ -14,6 +14,7 @@ const posts = defineCollection({
       })
       .optional(),
     categories: z.array(z.string()),
+    keywords: z.array(z.string()).default([]),
     author: z.string().optional(),
     commentsUrl: z.string().optional(),
     source: z.optional(z.object({ url: z.string(), title: z.string(), })),

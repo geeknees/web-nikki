@@ -2,8 +2,8 @@
 title: Rubykaigi 2018に参加してきた
 description: 'http://rubykaigi.org/2018'
 pubDate: '2018-06-02T12:11:18.425Z'
-categories: []
-keywords: []
+categories: ['RubyKaigi']
+keywords: ['RubyKaigi', 'Ruby', '技術コミュニティ', 'カンファレンス']
 ---
 
 [http://rubykaigi.org/2018](http://rubykaigi.org/2018)

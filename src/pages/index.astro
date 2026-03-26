@@ -1,10 +1,18 @@
 ---
 import LayoutDefault from '~/layouts/LayoutDefault.astro'
 import Post from '~/components/Post.astro'
-import { getPosts, getPostDescription } from '~/utils'
+import { getPosts, getPostDescription, getKeywordSummary } from '~/utils'
 import Pagination from '~/components/Pagination.astro'
+import ListSection from '~/components/ListSection.astro'
+import ListItem from '~/components/ListItem.astro'
+import { getHomepageCategorySelections } from '~/content/post-categories'
 
-const posts = (await getPosts()).slice(0, 5)
+const allPosts = await getPosts()
+const posts = allPosts.slice(0, 5)
+const homepageCategorySelections = getHomepageCategorySelections(
+  allPosts,
+  posts.map((post) => post.slug)
+)
 
 const { translate: t } = Astro.locals
 ---
@@ -18,6 +26,17 @@ const { translate: t } = Astro.locals
         </Post>
       ))
     }
+    <ListSection title='テーマ別に読む'>
+      {
+        homepageCategorySelections.map(({ category, post }) => (
+          <ListItem
+            title={post.data.title}
+            href={`/web-nikki/posts/${post.slug}/`}
+            description={`${category} — ${getKeywordSummary(post)}`}
+          />
+        ))
+      }
+    </ListSection>
     <Pagination
       showLeft={false}
       showPageCount={false}

@@ -39,11 +39,11 @@ export const THEME_CONFIG: App.Locals['config'] = {
     {
       name: 'Archive',
       href: '/web-nikki/archive'
+    },
+    {
+      name: 'Categories',
+      href: '/web-nikki/categories'
     }
-    // {
-    //   name: 'Categories',
-    //   href: '/web-nikki/categories'
-    // },
     // {
     //   name: 'About',
     //   href: 'web-nikki/about'

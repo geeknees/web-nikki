@@ -34,11 +34,28 @@ function getUrl(slug: string) {
   title={entry.data.title}
   desc={entry.data.description}
   banner={entry.data.banner}
+  keywords={entry.data.keywords}
   publishedTime={entry.data.pubDate}
 >
   <Post post={entry}>
     <Content />
   </Post>
+  {
+    entry.data.keywords.length > 0 && (
+      <section class='mt-8 border-t border-foreground-solid pt-6'>
+        <h2 class='post-title'>キーワード</h2>
+        <ul class='m-0 mt-3 flex flex-wrap gap-2 p-0 list-none'>
+          {entry.data.keywords.map((keyword) => (
+            <li>
+              <span class='inline-flex rounded-full border border-foreground-solid px-3 py-1 text-3.5'>
+                # {keyword}
+              </span>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )
+  }
   <Pagination
     showLeft={Boolean(prev)}
     leftTitle={`${t('prev_post')}: ${prev?.data.title}`}
