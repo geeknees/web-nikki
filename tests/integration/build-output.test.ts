@@ -43,5 +43,7 @@ assert.match(
   articleHtml,
   /<link rel="canonical" href="https:\/\/geeknees\.github\.io\/web-nikki\/posts\/2026-03-05\/">/
 )
+assert.match(articleHtml, /<h2 class="post-title">キーワード<\/h2>/)
+assert.match(articleHtml, /# SNS/)
 
 console.log('integration: build output SEO assertions passed')

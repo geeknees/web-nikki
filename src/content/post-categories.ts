@@ -11,10 +11,12 @@ export const HOMEPAGE_POST_CATEGORY_ORDER = [
 
 type HomepagePostCategory = (typeof HOMEPAGE_POST_CATEGORY_ORDER)[number]
 
+function isHomepagePostCategory(category: string): category is HomepagePostCategory {
+  return HOMEPAGE_POST_CATEGORY_ORDER.includes(category as HomepagePostCategory)
+}
+
 export function getHomepageCategoryName(post: Post): HomepagePostCategory {
-  const category = post.data.categories.find((candidate) =>
-    HOMEPAGE_POST_CATEGORY_ORDER.includes(candidate as HomepagePostCategory)
-  )
+  const category = post.data.categories.find(isHomepagePostCategory)
 
   if (!category) {
     throw new Error(`Missing homepage category in frontmatter for slug: ${post.slug}`)

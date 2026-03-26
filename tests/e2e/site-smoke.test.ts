@@ -48,6 +48,8 @@ assert.match(
     `<link rel="canonical" href="https://geeknees\\.github\\.io/web-nikki/posts/${firstPostSlug}/">`
   )
 )
+assert.match(firstPostHtml, /<h2 class="post-title">キーワード<\/h2>/)
+assert.match(firstPostHtml, /# SNS/)
 assert.match(firstPostHtml, /<meta name="keywords" content="[^"]+">/)
 assert.match(firstPostHtml, /<meta name="robots" content="index, follow">/)
 assert.match(firstPostHtml, /<article class="heti">/)

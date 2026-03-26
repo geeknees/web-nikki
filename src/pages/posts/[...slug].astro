@@ -39,6 +39,22 @@ function getUrl(slug: string) {
 >
   <Post post={entry}>
     <Content />
+    {
+      entry.data.keywords.length > 0 && (
+        <footer class='mt-8'>
+          <h2 class='post-title'>キーワード</h2>
+          <ul class='m-0 mt-3 flex flex-wrap gap-2 p-0 list-none'>
+            {entry.data.keywords.map((keyword) => (
+              <li>
+                <span class='inline-flex rounded-full border border-foreground-solid px-3 py-1 text-3.5'>
+                  # {keyword}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </footer>
+      )
+    }
   </Post>
   <Pagination
     showLeft={Boolean(prev)}
