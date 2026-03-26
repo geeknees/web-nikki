@@ -2,8 +2,8 @@
 title: Deep Learningを試してみる
 description: Dockerをつかってdeep dremを動かしてみました。Mac OSであれば下記を参考にセットアップするのが良い感じです。
 pubDate: '2015-07-22T11:14:18.309Z'
-categories: []
-keywords: []
+categories: ['AIとインターネット']
+keywords: ['Deep Learning', 'DeepDream', 'Docker', '機械学習', '実験']
 ---
 
 Dockerをつかってdeep dremを動かしてみました。Mac OSであれば下記を参考にセットアップするのが良い感じです。

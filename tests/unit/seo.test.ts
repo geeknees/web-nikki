@@ -52,34 +52,44 @@ assert.equal(
 const homepageSelections = getHomepageCategorySelections(
   [
     {
-      slug: '2026-03-05'
+      slug: '2026-03-05',
+      data: { categories: ['AIとインターネット'] }
     },
     {
-      slug: '2025-12-01'
+      slug: '2025-12-01',
+      data: { categories: ['個人史と暮らし'] }
     },
     {
-      slug: '2025-07-04'
+      slug: '2025-07-04',
+      data: { categories: ['AIとインターネット', 'プロダクト'] }
     },
     {
-      slug: '2025-04-21_rubykaigi'
+      slug: '2025-04-21_rubykaigi',
+      data: { categories: ['RubyKaigi', '個人史と暮らし'] }
     },
     {
-      slug: '2025-03-23'
+      slug: '2025-03-23',
+      data: { categories: ['個人史と暮らし'] }
     },
     {
-      slug: '2024-11-19_ai_and_human'
+      slug: '2024-11-19_ai_and_human',
+      data: { categories: ['教育', 'AIとインターネット'] }
     },
     {
-      slug: '2024-10-27_the_art_of_maintaining_the_world'
+      slug: '2024-10-27_the_art_of_maintaining_the_world',
+      data: { categories: ['AIとインターネット', '個人史と暮らし'] }
     },
     {
-      slug: '2024-05-19_rubykaigi'
+      slug: '2024-05-19_rubykaigi',
+      data: { categories: ['RubyKaigi', '個人史と暮らし'] }
     },
     {
-      slug: '2020-08-01'
+      slug: '2020-08-01',
+      data: { categories: ['仕事と組織', 'プロダクト'] }
     },
     {
-      slug: '2021-09-23'
+      slug: '2021-09-23',
+      data: { categories: ['個人史と暮らし'] }
     }
   ] as Post[],
   ['2026-03-05', '2025-12-01', '2025-07-04', '2025-04-21_rubykaigi', '2025-03-23']
@@ -88,11 +98,11 @@ const homepageSelections = getHomepageCategorySelections(
 assert.deepEqual(
   homepageSelections.map(({ category, post }) => [category, post.slug]),
   [
-    ['仕事と組織・プロダクト', '2020-08-01'],
-    ['教育・学習', '2024-11-19_ai_and_human'],
-    ['AI・インターネット・未来', '2024-10-27_the_art_of_maintaining_the_world'],
-    ['RubyKaigi・技術コミュニティ', '2024-05-19_rubykaigi'],
-    ['個人史・文化', '2021-09-23']
+    ['仕事と組織', '2020-08-01'],
+    ['教育', '2024-11-19_ai_and_human'],
+    ['AIとインターネット', '2024-10-27_the_art_of_maintaining_the_world'],
+    ['RubyKaigi', '2024-05-19_rubykaigi'],
+    ['個人史と暮らし', '2021-09-23']
   ]
 )
 
