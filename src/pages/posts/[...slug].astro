@@ -11,6 +11,7 @@ import {
   getLanguageFromPost,
   getPostPath,
   getPostSlug,
+  getPostTranslationKey,
   SITE_LANGUAGES
 } from '~/i18n'
 
@@ -20,7 +21,7 @@ export const getStaticPaths = (async ({}) => {
     const prev = posts[idx - 1]
     const next = posts[idx + 1]
     return {
-      params: { slug: post.id },
+      params: { slug: getPostSlug(post) },
       props: { entry: post, next, prev }
     }
   })
@@ -34,9 +35,9 @@ const { Content } = await render(entry)
 const { translate: t } = Astro.locals
 
 const allPosts = await getCollection('posts')
-const translationKey = entry.data.translationKey ?? getPostSlug(entry)
+const translationKey = getPostTranslationKey(entry)
 const alternates = allPosts
-  .filter((post) => (post.data.translationKey ?? getPostSlug(post)) === translationKey)
+  .filter((post) => getPostTranslationKey(post) === translationKey)
   .map((post) => ({
     href: new URL(getPostPath(post), Astro.url).toString(),
     hreflang: SITE_LANGUAGES[getLanguageFromPost(post)].locale

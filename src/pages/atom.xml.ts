@@ -4,6 +4,7 @@ import { THEME_CONFIG } from "~/theme.config";
 import type { APIContext } from "astro";
 import sanitizeHtml from "sanitize-html";
 import MarkdownIt from "markdown-it";
+import { getPostPath } from "~/i18n";
 
 const parser = new MarkdownIt();
 
@@ -18,7 +19,7 @@ export async function GET(_context: APIContext) {
     site: website,
     items: posts.map((post) => {
       return {
-        link: `/web-nikki/posts/${post.id}/`,
+        link: getPostPath(post),
         author: author,
         content: sanitizeHtml(parser.render(post.body ?? ""), { allowedTags }),
         title: post.data.title,

@@ -17,7 +17,10 @@ import {
   DEFAULT_LANGUAGE,
   getLanguageFromPost,
   getLocalizedPath,
-  getPostPath
+  getPostPath,
+  getPostSlug,
+  getPostTranslationKey,
+  normalizePostSlug
 } from '../../src/i18n.ts'
 
 const canonical = normalizeCanonicalUrl(
@@ -74,12 +77,38 @@ assert.equal(
   getLocalizedPath('/posts/2026-03-05/', 'zh'),
   '/web-nikki/zh/posts/2026-03-05/'
 )
+assert.equal(normalizePostSlug('2023-05-14_RubyKaigi'), '2023-05-14_rubykaigi')
+assert.equal(
+  getLocalizedPath('/posts/2023-05-14_RubyKaigi/', 'en'),
+  '/web-nikki/en/posts/2023-05-14_rubykaigi/'
+)
 assert.equal(
   getPostPath({
     id: 'en/2026-03-05',
     data: { language: 'en', postSlug: '2026-03-05' }
   } as Post),
   '/web-nikki/en/posts/2026-03-05/'
+)
+assert.equal(
+  getPostSlug({
+    id: 'en/en-2023-05-14_RubyKaigi',
+    data: { language: 'en', postSlug: '2023-05-14_RubyKaigi' }
+  } as Post),
+  '2023-05-14_rubykaigi'
+)
+assert.equal(
+  getPostTranslationKey({
+    id: 'en/en-2023-05-14_RubyKaigi',
+    data: { language: 'en', translationKey: '2023-05-14_RubyKaigi' }
+  } as Post),
+  '2023-05-14_rubykaigi'
+)
+assert.equal(
+  getPostPath({
+    id: 'en/en-2023-05-14_RubyKaigi',
+    data: { language: 'en', postSlug: '2023-05-14_RubyKaigi' }
+  } as Post),
+  '/web-nikki/en/posts/2023-05-14_rubykaigi/'
 )
 assert.equal(
   getLanguageFromPost({ id: '2026-03-05', data: {} } as Post),

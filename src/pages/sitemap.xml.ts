@@ -49,10 +49,7 @@ export async function GET(_context: APIContext) {
   )
 
   const postEntries = posts.map((post) =>
-    createSitemapEntry(
-      getAbsoluteUrl(`/web-nikki/posts/${post.id}/`),
-      post.data.pubDate
-    )
+    createSitemapEntry(getAbsoluteUrl(getPostPath(post)), post.data.pubDate)
   )
 
   const localizedEntries = (

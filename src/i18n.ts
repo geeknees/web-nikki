@@ -188,12 +188,22 @@ export function stripLanguagePathPrefix(pathname: string) {
 }
 
 export function getLocalizedPath(pathname: string, language: SiteLanguage) {
-  const pathWithoutLanguage = stripLanguagePathPrefix(pathname)
+  const pathWithoutLanguage = normalizePostPathname(stripLanguagePathPrefix(pathname))
   const prefix = SITE_LANGUAGES[language].pathPrefix
   const suffix = pathWithoutLanguage === '/' ? '/' : `${pathWithoutLanguage}/`
   const localizedPath = `${SITE_BASE_PATH}${prefix}${suffix}`
 
   return localizedPath.replace(/\/{2,}/g, '/')
+}
+
+function normalizePostPathname(pathname: string) {
+  const segments = pathname.split('/').filter(Boolean)
+
+  if (segments[0] === 'posts' && segments[1]) {
+    segments[1] = normalizePostSlug(segments[1])
+  }
+
+  return `/${segments.join('/')}`.replace(/\/$/, '') || '/'
 }
 
 export function getLanguageSwitcherLinks(pathname: string) {
@@ -212,10 +222,18 @@ export function getLanguageFromPost(post: Post): SiteLanguage {
 }
 
 export function getPostSlug(post: Post) {
-  return post.data.postSlug ?? post.id.split('/').at(-1) ?? post.id
+  return normalizePostSlug(post.data.postSlug ?? post.id.split('/').at(-1) ?? post.id)
+}
+
+export function getPostTranslationKey(post: Post) {
+  return normalizePostSlug(post.data.translationKey ?? getPostSlug(post))
 }
 
 export function getPostPath(post: Post) {
   const language = getLanguageFromPost(post)
   return getLocalizedPath(`/posts/${getPostSlug(post)}/`, language)
+}
+
+export function normalizePostSlug(slug: string) {
+  return slug.toLowerCase()
 }

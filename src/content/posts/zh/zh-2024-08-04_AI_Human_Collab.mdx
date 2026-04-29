@@ -1,0 +1,172 @@
+---
+title: 使用 AI 进行产品开发或向既有产品导入 AI 时思考的事
+description: 近年 AI 技术快速发展，许多企业正在考虑 AI 产品开发或向既有产品导入 AI。本文从 product management 视角整理策略和注意点。
+pubDate: '2024-08-03T22:50'
+language: zh
+translationKey: '2024-08-04_AI_Human_Collab'
+postSlug: '2024-08-04_AI_Human_Collab'
+categories: ['AI 与互联网', '产品']
+keywords: ['AI', '产品管理', '生成 AI', '导入策略', 'UX']
+---
+
+import { YouTube } from 'astro-embed'
+
+# 1. 引言
+
+近年 AI 技术快速发展，许多企业开始考虑使用 AI 的产品开发，或向既有产品导入 AI。本文从 product management 视角，整理我在 AI 产品开发或导入时思考的事情，以及有效导入 AI 的策略和注意点。
+
+# 2. Product Management 的本质
+
+## 2.1 对 product management 的误解
+
+PM 的工作不只是协调。进度管理、schedule 调整、部门间沟通很重要，但 PM 的本质是把 business requirements 和技术革新连接到 user experience。在日本，PM 职种仍然停留在协调业务的例子不少，可能是因为还没有摆脱 project manager 或 director 职种的既有印象。
+
+我见到的一些事例里，PM 的角色常常停留在这些“协调”上。特别不好的例子，是把上司临时想到的意见传达给现场，工作中心变成这种传话。然而本来的 PM 应该承担直接连接产品成功的战略性角色。避免把 PM 和协调业务混同，推进拥有 vision 与 strategy 的 PM 活动非常重要。
+
+近年来，日本也快速普及 product management 这个职种。尤其是 technology 行业和 startup 开始认识到 PM 的重要性，许多企业设置 PM position。这个趋势的目的，是强化 global market 竞争力和提高产品开发效率。但日本的 PM 职种中，停留在“协调业务”的例子仍然偏多。很多企业中，PM 专注于 project schedule 管理和部门间协调，参与 product vision 策定和战略决策的机会有限。我推测其背景在于，仍然没有完全脱离原本 project manager 或 director 职种的工作印象。
+
+## 2.2 真正的 product management
+
+Product management 的核心，是把 business requirements 与技术革新整合到 user experience 中。Business requirements 包括市场需求和收益目标，技术革新则是用新 technology 或方法改善产品和服务。Vision 与 roadmap 是实现这种整合的重要工具。
+
+之后，把 user experience 落到实际 product 中的技术也很重要。用户访谈、事前 research、prototyping，以及技术革新与 user experience 的关系都很重要。Steve Jobs 曾说 user experience 在先，technology 随后跟来。
+
+Vision 是描绘 product 或 service 的未来图景，成为整个 team 朝同一目标前进的指针。Roadmap 则是为了实现 vision 而显示具体 step 和 milestone 的计划。通过它可以管理 project 进展，并进行必要调整。
+
+<YouTube id='EU8ANASrDoQ' />
+[https://www.youtube.com/watch?v=EU8ANASrDoQ](https://www.youtube.com/watch?v=EU8ANASrDoQ)
+
+Jobs 的哲学非常接近 product management 的本质。把它与协调型 management style 对比，就能更容易看出差距。
+
+# 3. AI 产品开发战略
+
+## 3.1 人类与 AI 的 hybrid model
+
+导入 AI 时，许多企业首先应该考虑人类与 AI 的 hybrid model。它把人的判断力与 AI 知识劳动的 scalability 组合起来。尤其在导入初期，AI 精度和可靠性尚未完全确立时，这种 approach 有效。
+
+阶段性导入可以最小化风险。AI 可能受到 data bias、不完整 data、hallucination 影响。由人监督 AI 判断并必要时修正，可以防止错误决策造成重大影响。它也能提高组织整体对 AI 的适应力，让员工逐渐理解 AI tool，并把人类工作转向更有价值的创造性任务。
+
+AI system 基于学习 data 运作，但初期阶段 data 可能存在 bias 或不完整。AI 生成错误信息的 hallucination 风险也存在。由人类监督 AI 判断并必要时修正，可以防止错误决定造成重大影响。
+
+此外，阶段性整合有助于提高组织整体对 AI 的适应力。员工可以理解 AI tool 的使用方法和优点，逐渐习惯新技术。这个过程会提高组织整体 AI literacy，为将来更完整的整合做准备。同时，AI 可以 offload 一部分作业，人类得以集中于更高价值的创造性业务。
+
+阶段性导入也提供灵活性。可以基于早期 feedback 改良 AI model，让它适应实际业务 flow，最终再向更 autonomous 的 model 迁移。
+
+## 3.2 AI 单体 model 的可能性
+
+在 deep tech 企业中，AI 单体 model 也许能成为实现高度技术革新的强力工具。例如医疗图像诊断和材料科学预测。但即使在这些领域，完全依赖 AI 单体 model 也风险很高。
+
+例如医疗诊断中，AI 自动进行画像诊断并检测异常；材料科学中，AI model 预测新材料特性。这些都是具体例子。即便如此，我仍认为不应完全依赖 AI 单体 model。
+
+# 4. AI 导入的重要考量
+
+## 4.1 Platformer 动向
+
+AI 产品开发中，掌握主要 AI platform 的动向非常重要，包括 OpenAI、Anthropic、Google Gemini、Meta LLaMA。这些 platform 提供 LLM、machine learning tool、cloud AI service。
+
+- OpenAI: GPT 系列，用于对话 AI、内容生成、编程支援等。
+- Anthropic: 重视安全、可解释 AI。
+- Google Gemini: 在搜索、广告、图像识别等领域推进次世代 AI。
+- Meta LLaMA: 用于内容 moderation 和自然语言理解的大规模语言 model。
+
+不应过度依赖单一 platform。风险包括服务变更和费用改定、数据 privacy 与 security、以及无法适应技术进展。
+
+依赖风险可以分为几个方面。第一是 service 变更和料金改定：依赖单一 platform 时，service 变更或 API 费用急增可能对业务造成重大影响。第二是 data privacy 与 security：提供给 platform 的 data 可能面临泄漏或不正当使用风险，也必须考虑 privacy 侵害可能性。第三是对技术进展的适应：platform 技术或 service 更新时，如果无法快速对应，就会失去竞争力。
+
+## 4.2 AI 伦理
+
+随着 AI 技术进展，伦理配虑越来越重要。自动化 decision 可能产生不公平结果或侵犯 privacy。开发者和 product manager 必须考虑公平性、privacy 保护、说明责任。
+
+AI 对社会的影响非常大。错误使用或基于偏向 data 的判断，可能引发重大问题。例如 AI 自动化 decision system 可能导出不公平结果，或侵犯 privacy。因此，在导入技术时，AI developer 和 product manager 必须始终进行伦理考量。
+
+1. 公平性：AI system 不应对特定 group 持有偏见。需要排除 dataset bias，并确保 algorithm 透明性。
+2. Privacy 保护：必须适当保护用户个人信息，并采取强固 security 对策，防止不正 access 和 data 泄漏。
+3. 说明责任：需要确保 AI decision process 透明且可说明，让用户能够理解其判断。
+
+AI 伦理也与法律规制和社会受容性密切相关。它还和 platformer 的竞争有关。platform 必须竞争，而 AI 伦理可能成为刹车。个人来说，AI 越与社会整合，知性的相对重要性会下降，伦理的重要性会上升。
+
+## 4.3 web3
+
+AI 可能扩大社会价值观中好的部分，也可能扩大坏的部分。伊藤穰一先生把 AI 比作 jetpack：朝好的方向使用会提高 performance，但如果管理不好，也会更快走向坏方向。
+
+Lawrence Lessig 提出了规范、法律、市场、architecture/code 四种规制要素。从 architecture 角度看，Web3 可以成为 AI 伦理的重要技术要素。分布式网络和 blockchain 可以提高透明性、privacy 保护与用户的数据控制权。
+
+![https://en.wikipedia.org/wiki/Pathetic_dot_theory](https://upload.wikimedia.org/wikipedia/commons/8/87/Pathetic_dot_theory.png 'Pathetic dot theory')
+(The pathetic dot theory or the New Chicago School theory was introduced by Lawrence Lessig in a 1998 article and popularized in his 1999 book, Code and Other Laws of Cyberspace. )
+
+从 architecture 的观点看，Web3 作为 AI 伦理的技术要素扮演重要角色。Web3 以分布式 network 和 blockchain 技术为基础，强化 data 透明性与 privacy 保护。由此，用户可以控制自己的 data，并保证 AI system 被公平且透明地运用。分布式特性可以降低 data 不正使用和集中管理风险，支援 AI 的伦理性运用。
+
+实现 AI 伦理，不只需要规范，也需要法律、市场机制，以及 Web3 这样的技术 architecture。
+
+# 5. User Interface 与 UX
+
+## 5.1 Chat UI 的优势
+
+把 AI 与既有服务整合时，首先应考虑 chat UI。用户已经熟悉 messaging app 和 support chatbot，自然语言 interaction 的学习成本低。
+
+Chat UI 也容易应用 hybrid model。不管对面是人还是 AI，只要适当明示，对用户来说可以提供一贯体验。AI 无法处理复杂 inquiry 时，人类 operator 可以接手。
+
+## 5.2 AI service 的差异化
+
+Prototyping 有用，但也有限界。使用 GPTs 等 tool 时，只写 prompt 就容易产生“已经做出接近完成品”的错觉。但实际可能缺少深层 user experience 和持续价值。
+
+Prototype 可视化 idea，但无法充分评价长期 usability 或真实运用环境。得到的 feedback 可能浅，production performance 也不明。因此 AI prototyping 需要持续 user test 和实际环境试用。
+
+1. 缺乏深层 user insight：通过 prototype 得到的 feedback 有限，不足以引出用户深层 insight。长期使用时的满意度和实际利用状况，可能无法准确反映。
+2. 实用性评价不足：prototype 通常由限定功能或简化 system 构成，难以评价实际运用环境中的 performance 和耐久性。因此 release 后可能出现预期外问题。
+
+使用 GPTs 的 prototyping 中，只制作 prompt 就容易误以为已经接近完成品。但为了持续回应用户期待，仍需要重视持续 user experience 与实用性的详细设计和开发。
+
+# 6. AI 带来的人类与劳动变化
+
+## 6.1 AI 替代知识劳动
+
+AI 在知识劳动中的替代，类似 19 世纪蒸汽机替代体力劳动。AI 自动化信息处理、数据分析、decision support，提高生产率并削减成本，对所有产业产生影响。
+
+Marc Andreessen 曾写 "Software is eating the world"，AI 也会同样改变所有产业。
+[https://a16z.com/why-software-is-eating-the-world/](https://a16z.com/why-software-is-eating-the-world/)
+
+他之后还写了 "The Techno-Optimist Manifesto"。
+[https://a16z.com/the-techno-optimist-manifesto/](https://a16z.com/the-techno-optimist-manifesto/)
+
+我理解其中对技术的积极态度，但也担心技术格差、伦理问题、技术依存风险、环境负荷。需要一边最大化技术力量，一边谨慎观察其影响。
+
+这是一份基于“技术革新会对人类未来带来非常 positive 影响”这一信念写成的 manifesto。它强调技术拥有解决社会问题、提高生活质量的力量；技术革新是解决未来课题的 key；技术进步伴随伦理问题，但这不应成为否定技术本身的理由；技术革新应以 global 视角推进，让全人类享受技术恩惠。
+
+我能理解这种对技术革新的 positive 姿态，以及技术解决问题的力量。技术确实在许多方面改善了我们的生活，也给予未来希望。比如在技术与伦理方面，MIT 的 Probabilistic Computing project 试图通过概率论方法开发更透明、可解释的 AI system。Spam filter 中使用的 Bayesian filter 也是这种技术的一例。医疗 AI startup 中，也会听到以统计学为 background 的 R language team 和以 machine learning 为 background 的 Python team 相互竞争的例子。
+
+但我担心以下几点：技术恩惠不一定公平分配给所有人，可能集中在一部分人或地区并扩大既有差距；技术可能引发新的伦理问题，例如 privacy 侵害和 AI bias；过度依赖技术可能降低人类基本能力和判断力；技术革新对环境造成的负荷也不能无视。
+
+## 6.2 感情劳动的台头
+
+我感觉经营工作的很大部分正在从知识劳动转向感情劳动。management 和 team management 的 best practice 被方法论化，AI 又让这些知识更容易使用。经营者和 manager 必须维护员工 motivation、team morale、客户信任与长期 partnership。
+
+AI 与人的协作 model 在感情劳动领域尤其有希望。AI 支援 data analysis 和 automation，人类提供 emotional intelligence 和 empathy。在 AI 时代，被要求的也许不是高智能或金钱成功，而是高伦理感和更好的感性。
+
+例如，AI 可以实时分析客户情绪状态，并提出最合适的对应方法。这样员工就能进行更 personal 的回应。さらに，AI 支援日常业务后，员工可以集中于更 creative 的问题解决和战略性业务。
+
+# 总结
+
+AI 与人类协作创造价值，可以通过 AI model intelligence、service integration、human transformation、AI ethics、以及 probabilistic computing 和 web3 等技术伦理补完来理解。
+
+AI ethics 作为风险因素会降低价值，而技术补完可以降低风险并提高整体价值。关键在于，AI 价值由技术、service design、人类变化和伦理的复杂相互作用创造。
+
+价值 V 可以由以下要素定义：
+
+- AI model intelligence (A)：AI model 的知性
+- Service Integration (S)：service 的整合
+- Human Transformation (H)：递归发生的人类变化
+- AI Ethics (E)：AI 伦理
+- Technological Ethical Supplement (T)：Probabilistic Computing 或 web3
+
+将这些要素组合，可以展开为下面的数式：
+
+$$
+ V = (A \times S) \times \left( \sum_{i=1}^{n} H_i \right) \times \left( \frac{1}{1 + \sum_{j=1}^{m} E_j} \right) \times \left( \prod_{k=1}^{p} T_k \right)
+$$
+
+这个数式可以这样解读。AI model intelligence 与 Service Integration 的乘积，产生 AI 技术及其实现带来的初始价值。这个价值会通过递归发生的人类变化 H_i 的总和进一步放大。AI Ethics E_j 作为 risk factor，会成为降低价值的要素，并通过位于分母，对整体价值产生反比例影响。Technological Ethical Supplement T_k 则作为对这些 risk factor 的技术补完发挥作用，通过概率计算和 web3 等要素降低风险、提高整体价值。
+
+也就是说，AI 与人类的协作 model 并不是单纯由 AI 性能决定，而是由技术、service 整合、人类变化、伦理风险与技术补完之间复杂相互作用来创造多面的价值。
+
+本文在 AI 支援下写成，但要旨由作者确定。

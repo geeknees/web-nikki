@@ -3,10 +3,12 @@
 
 import assert from 'node:assert/strict'
 import { execFileSync } from 'node:child_process'
-import { readFileSync } from 'node:fs'
+import { existsSync, readFileSync, readdirSync, rmSync } from 'node:fs'
 import { join } from 'node:path'
 
 const cwd = process.cwd()
+
+rmSync(join(cwd, 'dist'), { recursive: true, force: true })
 
 execFileSync('pnpm', ['build'], {
   cwd,
@@ -30,6 +32,9 @@ const chineseArticleHtml = readFileSync(
   join(cwd, 'dist/zh/posts/2026-03-05/index.html'),
   'utf8'
 )
+const rubyKaigiArticlePath = join(cwd, 'dist/posts/2023-05-14_rubykaigi/index.html')
+const rubyKaigiArticleHtml = readFileSync(rubyKaigiArticlePath, 'utf8')
+const generatedPostRoutes = readdirSync(join(cwd, 'dist/posts'))
 
 assert.match(homepageHtml, /<html lang="ja-jp">/)
 assert.match(
@@ -80,5 +85,21 @@ assert.match(
 )
 assert.match(chineseArticleHtml, /"inLanguage":"zh-cn"/)
 assert.match(chineseArticleHtml, /<h2 class="post-title">关键词<\/h2>/)
+
+assert.ok(existsSync(rubyKaigiArticlePath), 'lowercase RubyKaigi route is missing')
+assert.ok(generatedPostRoutes.includes('2023-05-14_rubykaigi'))
+assert.equal(generatedPostRoutes.includes('2023-05-14_RubyKaigi'), false)
+assert.match(
+  rubyKaigiArticleHtml,
+  /<link rel="canonical" href="https:\/\/geeknees\.github\.io\/web-nikki\/posts\/2023-05-14_rubykaigi\/">/
+)
+assert.match(
+  rubyKaigiArticleHtml,
+  /href="\/web-nikki\/en\/posts\/2023-05-14_rubykaigi\/"/
+)
+assert.match(
+  rubyKaigiArticleHtml,
+  /rel="alternate" href="https:\/\/geeknees\.github\.io\/web-nikki\/zh\/posts\/2023-05-14_rubykaigi\/" hreflang="zh-cn"/
+)
 
 console.log('integration: build output SEO assertions passed')

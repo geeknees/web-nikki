@@ -1,0 +1,162 @@
+---
+title: What I think about when developing AI products or introducing AI into existing products
+description: With the rapid development of AI, many companies are considering AI-based product development or AI integration. This article summarizes strategies and cautions from a product management perspective.
+pubDate: '2024-08-03T22:50'
+language: en
+translationKey: '2024-08-04_AI_Human_Collab'
+postSlug: '2024-08-04_AI_Human_Collab'
+categories: ['AI and the Internet', 'Product']
+keywords: ['AI', 'Product management', 'Generative AI', 'Adoption strategy', 'UX']
+---
+
+import { YouTube } from 'astro-embed'
+
+# 1. Introduction
+
+With the rapid development of AI, many companies are considering AI-based product development or introducing AI into existing products. From a product management perspective, I summarized what I think about when using AI in products, along with strategies and cautions for effective AI adoption.
+
+# 2. The Essence of Product Management
+
+## 2.1 Misunderstandings about product management
+
+Product management is not merely coordination. Coordination, such as schedule management, communication among departments, and project progress control, is important, but the essence of PM is connecting business requirements and technological innovation to user experience. In Japan, many PM roles still seem close to coordination work, perhaps because of existing images of project managers or directors.
+
+In the examples I see and hear, the PM role often stops at that kind of "coordination." Especially poor cases are those where the main work is relaying an executive's idea, almost a spur-of-the-moment instruction, to the field. A real PM should play a strategic role directly connected to product success. It is important to avoid confusing coordination work with product management, and to push PM work forward with vision and strategy.
+
+The PM role has spread quickly in Japan in recent years, especially in technology companies and startups. Many companies have created PM positions to improve competitiveness in global markets and make product development more efficient. Still, my impression is that many Japanese PM roles remain closer to coordination. In many companies, PMs focus on schedule management and cross-department coordination, with limited opportunities to define product vision or make strategic decisions. I suspect this comes from existing images of project-manager and director roles.
+
+## 2.2 True product management
+
+The core of product management is integrating business requirements and technological innovation into user experience. Business requirements include market needs and revenue goals, while technological innovation means improving products and services through new technologies or methods. Vision and roadmap are tools for realizing that integration.
+
+Listening to related parties and coordinating opinions is important, but it is not the essence. The essence is to turn market needs, revenue goals, new technologies, and methods into a valuable user experience. A vision describes the future shape of the product or service and gives the team a common direction. A roadmap turns that vision into concrete steps and milestones, so the project can be managed and adjusted.
+
+After that, the skill of turning user experience into an actual product is also essential. User interviews, research, prototyping, and the relationship between technology and experience matter. Steve Jobs said user experience comes first and technology follows.
+
+<YouTube id='EU8ANASrDoQ' />
+[https://www.youtube.com/watch?v=EU8ANASrDoQ](https://www.youtube.com/watch?v=EU8ANASrDoQ)
+
+Jobs's philosophy is very close to the essence of product management. Comparing it with coordination-style management makes the gap easier to see.
+
+# 3. Strategy for AI Product Development
+
+## 3.1 Human and AI hybrid model
+
+When introducing AI, the first model many companies should consider is a hybrid of humans and AI. It combines human judgment with the scalability of AI knowledge work. This is especially effective in early adoption, when AI accuracy and reliability are not fully established.
+
+Gradual integration reduces risk. AI may be affected by data bias, incomplete data, or hallucinations. Human supervision can prevent incorrect decisions from having serious consequences. It also helps organizations adapt to AI, improves AI literacy, and lets people focus on more creative work as AI offloads routine tasks.
+
+Gradual integration also gives flexibility. Feedback can improve models and adapt them to real workflows, eventually allowing a move toward more autonomous systems.
+
+## 3.2 Possibility of AI-only models
+
+In deep-tech companies, AI-only models may be powerful tools for advanced innovation, such as medical image diagnosis or materials science models. Even in those fields, however, I think complete dependence on AI-only models is risky.
+
+In medical diagnosis, for example, AI can automatically analyze images and detect abnormalities. In materials science, AI models can predict the characteristics of new materials. These are areas where an AI-only model may be an exceptional source of innovation. Even so, full dependence is risky because mistakes can have serious consequences and because responsibility must remain explainable.
+
+# 4. Important Considerations
+
+## 4.1 Platform trends
+
+In AI product development, understanding the movements of major platforms is important: OpenAI, Anthropic, Google Gemini, and Meta LLaMA. These platforms provide LLMs, machine-learning tools, and cloud AI services.
+
+- OpenAI: GPT models used for dialogue, content generation, programming support, and more.
+- Anthropic: emphasizes safe and explainable AI.
+- Google Gemini: develops next-generation AI across search, advertising, image recognition, and more.
+- Meta LLaMA: large language models used for content moderation and natural-language understanding.
+
+Overdependence on a single platform should be avoided. Risks include pricing or API changes, privacy and security issues, and inability to adapt to platform technology changes.
+
+## 4.2 AI ethics
+
+As AI develops, ethical consideration becomes more important. Automated decisions can produce unfair results or violate privacy. Developers and product managers must consider fairness, privacy protection, and accountability.
+
+AI ethics also relates closely to law, regulation, and social acceptance. It also relates to platform competition: platforms must compete, while ethics can become a brake. Personally, I think as AI becomes more integrated into society, intelligence becomes less important and ethics becomes more important.
+
+The practical points are fairness, privacy protection, and accountability. Fairness means avoiding systems that are biased against specific groups, removing dataset bias, and ensuring algorithmic transparency. Privacy protection means protecting personal information and taking strong measures against unauthorized access and data leaks. Accountability means making AI decision-making processes transparent and explainable enough that users can accept them.
+
+## 4.3 web3
+
+AI may expand both the good and bad parts of social values. Joi Ito compares AI to a jetpack: it can improve performance in a good direction, but if poorly managed, it can push us faster in a bad direction.
+
+> AI can extend what humans are doing. To use an analogy, it is like putting a jetpack on our backs when we act. If we put on the jetpack while heading in a good direction, performance improves. But if it is not managed properly, there is a risk that we head in a worse direction faster. That jetpack is AI.
+
+[From Joi Ito's special lecture](https://www2.deloitte.com/jp/ja/blog/risk-management/2023/book-special-talk-02.html)
+
+Lawrence Lessig described four regulatory forces: norms, law, market, and architecture or code. From the architecture perspective, Web3 can become an important technical element for AI ethics. Decentralized networks and blockchains can improve transparency, privacy protection, and user control over data.
+
+Ethical AI will require norms, law, market mechanisms, and technical architecture such as Web3.
+
+![https://en.wikipedia.org/wiki/Pathetic_dot_theory](https://upload.wikimedia.org/wikipedia/commons/8/87/Pathetic_dot_theory.png 'Pathetic dot theory')
+(The pathetic dot theory, also known as New Chicago School theory, was introduced by Lawrence Lessig in a 1998 article and popularized in his 1999 book, Code and Other Laws of Cyberspace.)
+
+Lessig emphasizes architecture as one of the elements of ethics and regulation. From that perspective, Web3 may play an important role as a technical component of AI ethics. Web3 is based on decentralized networks and blockchain technology, strengthening data transparency and privacy protection. It can help users control their own data and ensure that AI systems operate fairly and transparently. Its decentralized nature can reduce the risks of data misuse and centralized control.
+
+# 5. User Interface and UX
+
+## 5.1 Strength of chat UI
+
+When integrating AI into an existing service, chat UI should be considered first. Users are familiar with messaging apps and support chatbots, so natural-language interaction has low learning cost.
+
+Chat UI also fits the hybrid model. Whether the other side is a human or AI, the user can receive a consistent experience, as long as disclosure is handled properly. When AI cannot handle a complex inquiry, a human operator can take over.
+
+## 5.2 Differentiating AI services
+
+Prototyping is useful, but it has limits. With tools like GPTs, writing prompts can make it feel like something close to a finished product exists. However, deep user experience and sustainable value may be missing.
+
+Prototypes help visualize ideas, but they may not evaluate long-term usability or real operating conditions. Feedback may be shallow, and performance in production may be unknown. AI prototyping needs continuous user testing and real-environment trials.
+
+In GPTs-based prototyping, it is easy to fall into the illusion that writing a prompt has produced something close to a finished product. In reality, continued user experience and practical value require detailed design and development. Feedback from a prototype is limited and may not reveal deep user insights. A prototype is often built with limited functions or simplified systems, so production performance and durability can remain unknown. That creates the risk of unexpected problems after release.
+
+# 6. Human and Labor Transformation
+
+## 6.1 AI replacing knowledge work
+
+AI replacing knowledge work resembles the steam engine replacing physical labor in the 19th century. AI automates information processing, data analysis, and decision support, improving productivity and reducing costs across industries.
+
+Marc Andreessen wrote "Software is eating the world," and AI will similarly transform all industries.
+[https://a16z.com/why-software-is-eating-the-world/](https://a16z.com/why-software-is-eating-the-world/)
+
+He later wrote "The Techno-Optimist Manifesto."
+[https://a16z.com/the-techno-optimist-manifesto/](https://a16z.com/the-techno-optimist-manifesto/)
+
+This manifesto is based on the belief that technological innovation will have a highly positive impact on humanity's future. Its main points include the power of technology to solve social problems and improve quality of life, a future-oriented view that technology can solve problems such as climate change, energy scarcity, and poverty, the belief that ethical problems should be solved through technological progress rather than by rejecting technology itself, and a global perspective in which the benefits of technology should reach all humanity.
+
+I understand its positive attitude toward technological innovation and the problem-solving power of technology. Technological progress has certainly improved our lives in many ways and gives hope for the future. For example, in the relation between technology and ethics, MIT's Probabilistic Computing project aims to develop more transparent and explainable AI systems using probabilistic methods. Bayesian filters, used in spam filtering, are one example of this kind of probabilistic calculation. I have also heard examples from medical AI startups where teams with an R/statistics background and teams with a Python/machine-learning background push against each other.
+
+At the same time, I am concerned about unequal distribution of benefits, ethical problems, overdependence on technology, and environmental load. The benefits of technology do not automatically reach everyone fairly. Technology can worsen existing inequality, create new privacy or bias problems, weaken human judgment through overdependence, and increase environmental burden. We need a balance that uses technology while carefully watching its impact from multiple perspectives.
+
+## 6.2 Rise of emotional labor
+
+Much of management is shifting from knowledge work to emotional labor. Best practices are becoming methodology, and AI makes knowledge easier to access. Managers must support motivation, morale, trust with customers, and long-term partnerships.
+
+The collaboration model between AI and humans is promising here. AI supports analysis and automation; humans provide empathy and emotional intelligence. In the AI age, what matters may not be high intelligence or money, but strong ethics and better sensibility.
+
+# Summary
+
+The value created by AI-human collaboration can be modeled through these elements:
+
+- AI model intelligence (A)
+- Service Integration (S)
+- Human Transformation (H), which happens recursively
+- AI Ethics (E)
+- Technological Ethical Supplement (T), such as Probabilistic Computing and web3
+
+The value (V) can be expanded as follows:
+
+$$
+ V = (A \times S) \times \left( \sum_{i=1}^{n} H_i \right) \times \left( \frac{1}{1 + \sum_{j=1}^{m} E_j} \right) \times \left( \prod_{k=1}^{p} T_k \right)
+
+
+$$
+
+This formula can be interpreted as follows:
+
+1. AI model intelligence (A) multiplied by Service Integration (S) creates the initial value from AI technology and its implementation.
+2. That value is amplified by the sum of recursively occurring human transformations H_i. Here, i represents different elements of change, and the accumulation of those changes improves overall value.
+3. AI Ethics (E_j) acts as a risk factor that reduces value. Here, j represents different ethical-risk aspects. As those risks increase, value decreases. The risks are placed in the denominator and affect total value inversely.
+4. Technological Ethical Supplement (T_k) functions as a technical supplement against those risk factors. Here, k represents different elements of probabilistic computing and web3. Multiplying these elements reduces risk and increases total value.
+
+In this way, the AI-human collaboration model creates multidimensional value through complex interaction among these elements. Properly managing the risk factor of AI ethics and using technological ethical supplements such as probabilistic computing and web3 makes it possible to maximize value.
+
+This article was written with AI support, but the core argument was formed by the author.
