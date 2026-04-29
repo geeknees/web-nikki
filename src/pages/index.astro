@@ -11,7 +11,7 @@ const allPosts = await getPosts()
 const posts = allPosts.slice(0, 5)
 const homepageCategorySelections = getHomepageCategorySelections(
   allPosts,
-  posts.map((post) => post.slug)
+  posts.map((post) => post.id)
 )
 
 const { translate: t } = Astro.locals
@@ -31,7 +31,7 @@ const { translate: t } = Astro.locals
         homepageCategorySelections.map(({ category, post }) => (
           <ListItem
             title={post.data.title}
-            href={`/web-nikki/posts/${post.slug}/`}
+            href={`/web-nikki/posts/${post.id}/`}
             description={`${category} — ${getKeywordSummary(post)}`}
           />
         ))

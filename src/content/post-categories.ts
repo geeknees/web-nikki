@@ -19,7 +19,7 @@ export function getHomepageCategoryName(post: Post): HomepagePostCategory {
   const category = post.data.categories.find(isHomepagePostCategory)
 
   if (!category) {
-    throw new Error(`Missing homepage category in frontmatter for slug: ${post.slug}`)
+    throw new Error(`Missing homepage category in frontmatter for slug: ${post.id}`)
   }
 
   return category
@@ -32,7 +32,7 @@ export function getHomepageCategorySelections(posts: Post[], excludedSlugs: stri
     const post = posts.find(
       (candidate) =>
         getHomepageCategoryName(candidate) === category &&
-        !excludedSlugSet.has(candidate.slug)
+        !excludedSlugSet.has(candidate.id)
     )
 
     if (!post) {
