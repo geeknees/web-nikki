@@ -1,11 +1,15 @@
+// ABOUTME: Shared content helpers for post retrieval, taxonomy grouping, and display formatting.
+// ABOUTME: Keeps localized post collections filtered before pages render lists and feeds.
+
 import { getCollection } from "astro:content";
 import sanitizeHtml from "sanitize-html";
 import MarkdownIt from "markdown-it";
+import { DEFAULT_LANGUAGE, getLanguageFromPost, type SiteLanguage } from "~/i18n";
 
 export { getKeywordSummary, getPostTaxonomySummary } from "./post-taxonomy";
 
-export async function getCategories() {
-  const posts = await getPosts();
+export async function getCategories(language: SiteLanguage = DEFAULT_LANGUAGE) {
+  const posts = await getPosts({ language });
 
   const categories = new Map<string, Post[]>();
 
@@ -22,14 +26,16 @@ export async function getCategories() {
   return categories;
 }
 
-export async function getPosts() {
+export async function getPosts(options: { language?: SiteLanguage } = {}) {
   const posts = await getCollection("posts");
-  posts.sort((a, b) => {
+  const language = options.language ?? DEFAULT_LANGUAGE;
+  const localizedPosts = posts.filter((post) => getLanguageFromPost(post) === language);
+  localizedPosts.sort((a, b) => {
     const aDate = a.data.pubDate || new Date();
     const bDate = b.data.pubDate || new Date();
     return bDate.getTime() - aDate.getTime();
   });
-  return posts;
+  return localizedPosts;
 }
 
 const parser = new MarkdownIt();

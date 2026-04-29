@@ -1,0 +1,67 @@
+---
+// ABOUTME: Localized homepage for translated post collections.
+// ABOUTME: Renders English and Chinese index pages without changing Japanese root URLs.
+
+import LayoutDefault from '~/layouts/LayoutDefault.astro'
+import Post from '~/components/Post.astro'
+import { getPosts, getPostDescription } from '~/utils'
+import Pagination from '~/components/Pagination.astro'
+import ListSection from '~/components/ListSection.astro'
+import ListItem from '~/components/ListItem.astro'
+import {
+  getLocalizedPath,
+  TRANSLATED_LANGUAGES
+} from '~/i18n'
+
+export function getStaticPaths() {
+  return TRANSLATED_LANGUAGES.map((language) => ({
+    params: { language },
+    props: { language }
+  }))
+}
+
+const { language } = Astro.props
+const allPosts = await getPosts({ language })
+const posts = allPosts.slice(0, 5)
+const categorySelections = Array.from(
+  allPosts.reduce((categories, post) => {
+    post.data.categories.forEach((category) => {
+      if (!categories.has(category)) {
+        categories.set(category, post)
+      }
+    })
+    return categories
+  }, new Map<string, Post>())
+)
+
+const { translate: t } = Astro.locals
+---
+
+<LayoutDefault>
+  <section contain-layout un-flex='~ col gap-7.5'>
+    {
+      posts.map((post) => (
+        <Post post={post}>
+          <p class='line-clamp-4'>{getPostDescription(post)}</p>
+        </Post>
+      ))
+    }
+    <ListSection title={t('read_by_topic')}>
+      {
+        categorySelections.map(([category, post]) => (
+          <ListItem
+            title={category}
+            href={getLocalizedPath(`/categories/${category}/`, language)}
+            description={post.data.title}
+          />
+        ))
+      }
+    </ListSection>
+    <Pagination
+      showLeft={false}
+      showPageCount={false}
+      rightTitle={t('all_posts')}
+      rightUrl={getLocalizedPath('posts/page/1', language)}
+    />
+  </section>
+</LayoutDefault>

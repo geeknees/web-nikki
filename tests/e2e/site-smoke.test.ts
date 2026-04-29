@@ -26,12 +26,14 @@ assert.match(
   homepageHtml,
   /href="\/web-nikki\/posts\/2024-10-27_the_art_of_maintaining_the_world\/"/
 )
-assert.match(homepageHtml, /href="\/web-nikki\/categories"/)
+assert.match(homepageHtml, /href="\/web-nikki\/categories\/"/)
 assert.match(homepageHtml, /AI添削 \/ 教育 \/ 品質管理/)
 assert.match(homepageHtml, /テーマ別に読む/)
+assert.match(homepageHtml, /href="\/web-nikki\/en\/"/)
+assert.match(homepageHtml, /href="\/web-nikki\/zh\/"/)
 
 const firstPostHrefMatch = homepageHtml.match(
-  /href="\/web-nikki\/posts\/([^"]+)\/"/
+  /href="\/web-nikki\/posts\/(?!page\/)([^"]+)\/"/
 )
 
 assert.ok(firstPostHrefMatch, 'homepage did not expose a crawlable post link')
@@ -51,9 +53,26 @@ assert.match(
 )
 assert.match(firstPostHtml, /<h2 class="post-title">キーワード<\/h2>/)
 assert.match(firstPostHtml, /# SNS/)
-assert.match(firstPostHtml, /href="\/web-nikki\/categories\/AIとインターネット"/)
+assert.match(firstPostHtml, /href="\/web-nikki\/categories\/AIとインターネット\/"/)
 assert.match(firstPostHtml, /<meta name="keywords" content="[^"]+">/)
 assert.match(firstPostHtml, /<meta name="robots" content="index, follow">/)
 assert.match(firstPostHtml, /<article class="heti">/)
+
+const englishHomepagePath = join(cwd, 'dist/en/index.html')
+assert.ok(existsSync(englishHomepagePath), 'dist/en/index.html is missing')
+
+const englishHomepageHtml = readFileSync(englishHomepagePath, 'utf8')
+assert.match(englishHomepageHtml, /Read by topic/)
+assert.match(
+  englishHomepageHtml,
+  /href="\/web-nikki\/en\/posts\/2026-03-05\/"/
+)
+
+const englishPostHtml = readFileSync(
+  join(cwd, 'dist/en/posts/2026-03-05/index.html'),
+  'utf8'
+)
+assert.match(englishPostHtml, /Social media is broken/)
+assert.match(englishPostHtml, /href="\/web-nikki\/zh\/posts\/2026-03-05\/"/)
 
 console.log(`e2e: crawled homepage to post ${firstPostSlug}`)

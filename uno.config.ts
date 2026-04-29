@@ -4,7 +4,6 @@ import {
   presetAttributify,
   presetIcons,
 } from "unocss";
-import transformerDirectives from "@unocss/transformer-directives";
 import { THEME_CONFIG } from "./src/theme.config";
 
 const {socials, themeStyle} = THEME_CONFIG;
@@ -50,9 +49,7 @@ export default defineConfig({
     ['icon', 'inline-block '],
     ['post-title', 'text-5 font-bold lh-7.5 m-0'],
   ],
-  transformers: [
-    transformerDirectives(),
-  ],
+  transformers: [],
   safelist: [
     ...socials.map((social) => `i-mdi-${social.name}`),
     'i-mdi-content-copy',

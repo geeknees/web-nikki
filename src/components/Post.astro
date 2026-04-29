@@ -1,22 +1,27 @@
 ---
 import { formatDate, getPathFromCategory } from '~/utils'
-import { THEME_CONFIG } from '~/theme.config'
+import { getLanguageFromPost, getLocalizedPath, getPostPath } from '~/i18n'
 interface Props {
   post: Post
 }
 
 const { post } = Astro.props
 const { translate: t } = Astro.locals
+const { category_map } = Astro.locals.config
+const postLanguage = getLanguageFromPost(post)
 
 function getCategoryUrl(category: string) {
-  return `/web-nikki/categories/${getPathFromCategory(category, THEME_CONFIG.category_map)}`
+  return getLocalizedPath(
+    `/categories/${getPathFromCategory(category, category_map)}/`,
+    postLanguage
+  )
 }
 ---
 
 <article class='heti'>
   <header>
     <h1 class='post-title!'>
-      <a href={`/web-nikki/posts/${post.id}/`}>{post.data.title}</a>
+      <a href={getPostPath(post)}>{post.data.title}</a>
     </h1>
     <div class='mt-2 text-3.5'>
       <span>{t('posted_at')}</span>

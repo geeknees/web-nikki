@@ -20,6 +20,7 @@ interface Props {
   keywords?: string[]
   noindex?: boolean
   publishedTime?: Date
+  alternates?: Array<{ href: string; hreflang: string }>
 }
 
 const props = Astro.props
@@ -77,7 +78,12 @@ const structuredData = props.publishedTime
       description={desc}
       extend={{
         link: [
-          { rel: 'icon', href: '/web-nikki/favicon.svg', type: 'image/svg+xml' }
+          { rel: 'icon', href: '/web-nikki/favicon.svg', type: 'image/svg+xml' },
+          ...(props.alternates ?? []).map((alternate) => ({
+            rel: 'alternate',
+            href: alternate.href,
+            hreflang: alternate.hreflang
+          }))
         ],
         meta: [
           ...(props.keywords?.length
@@ -112,20 +118,19 @@ const structuredData = props.publishedTime
     <div
       un-max-lg='animate-fadein-down'
       un-lg='flex flex-row-reverse justify-between gap-4 px-8 mx-auto max-w-6xl'
-      class='container contain-layout m-a'
+      class='site-shell container contain-layout m-a'
     >
       <div
         un-lg='sticky top-0 h-screen py-20 animate-fadein-left gap-8'
         un-lg:flex='~ col justify-between items-start gap-4'
-        class='p-7.5'
+        class='site-sidebar p-7.5'
       >
         <Header />
-        <Footer class='max-lg:hidden' />
+        <Footer class='desktop-site-footer' />
       </div>
-      <main un-lg='py-20 min-w-xl animate-fadein-down' class='p-7.5'>
+      <main un-lg='py-20 min-w-xl animate-fadein-down' class='site-main p-7.5'>
         <slot />
       </main>
-      <Footer class='lg:hidden p-7.5' />
     </div>
   </body>
 </html>

@@ -31,6 +31,7 @@ export default defineConfig({
   },
   integrations: [
     UnoCSS({
+      mode: "per-module",
       injectReset: true,
     }),
     robotsTxt({

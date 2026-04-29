@@ -1,34 +1,30 @@
 ---
+// ABOUTME: Localized paginated post index for translated articles.
+// ABOUTME: Keeps pagination URLs language-prefixed for English and Chinese readers.
+
 import LayoutDefault from '~/layouts/LayoutDefault.astro'
 import Post from '~/components/Post.astro'
 import Pagination from '~/components/Pagination.astro'
 import { getPosts, getPostDescription } from '~/utils'
 import type { InferGetStaticPropsType, GetStaticPaths } from 'astro'
-import { DEFAULT_LANGUAGE } from '~/i18n'
-
+import { getLocalizedPath, TRANSLATED_LANGUAGES } from '~/i18n'
 const { translate: t } = Astro.locals
 
 export const getStaticPaths = (async ({ paginate }) => {
-  const posts = await getPosts({ language: DEFAULT_LANGUAGE })
-  return paginate(posts, { pageSize: 5 })
+  const paths = []
+
+  for (const language of TRANSLATED_LANGUAGES) {
+    const posts = await getPosts({ language })
+    paths.push(...paginate(posts, { params: { language }, pageSize: 5 }))
+  }
+
+  return paths
 }) satisfies GetStaticPaths
 
 type Props = InferGetStaticPropsType<typeof getStaticPaths>
 
 const { page } = Astro.props
-const basePath = Astro.url.pathname.split('/posts/page/')[0] || ''
-const withBasePath = (path: string) => {
-  let normalized = path.startsWith('/') ? path : `/${path}`
-  if (basePath) {
-    const baseWithSlash = `${basePath}/`
-    while (normalized.startsWith(baseWithSlash)) {
-      normalized = normalized.slice(basePath.length)
-      normalized = normalized.startsWith('/') ? normalized : `/${normalized}`
-    }
-    return `${basePath}${normalized}`
-  }
-  return normalized
-}
+const { language } = Astro.params
 ---
 
 <LayoutDefault noindex={page.currentPage > 1}>
@@ -44,10 +40,10 @@ const withBasePath = (path: string) => {
     <Pagination
       showLeft={Boolean(page.url.prev)}
       leftTitle={t('prev')}
-      leftUrl={page.url.prev ? withBasePath(page.url.prev) : ''}
+      leftUrl={page.url.prev ? getLocalizedPath(page.url.prev, language) : ''}
       showRight={Boolean(page.url.next)}
       rightTitle={t('next')}
-      rightUrl={page.url.next ? withBasePath(page.url.next) : ''}
+      rightUrl={page.url.next ? getLocalizedPath(page.url.next, language) : ''}
       currentPage={page.currentPage}
       totalPage={page.lastPage}
     />

@@ -13,6 +13,12 @@ import {
   getPostTaxonomySummary
 } from '../../src/utils/post-taxonomy.ts'
 import { getHomepageCategorySelections } from '../../src/content/post-categories.ts'
+import {
+  DEFAULT_LANGUAGE,
+  getLanguageFromPost,
+  getLocalizedPath,
+  getPostPath
+} from '../../src/i18n.ts'
 
 const canonical = normalizeCanonicalUrl(
   new URL('https://geeknees.github.io/web-nikki')
@@ -54,6 +60,31 @@ assert.equal(
   'https://geeknees.github.io/web-nikki/posts/2026-03-05/'
 )
 assert.equal(articleStructuredData.keywords, 'SNS, X, YouTube')
+
+assert.equal(DEFAULT_LANGUAGE, 'ja')
+assert.equal(
+  getLocalizedPath('/posts/2026-03-05/', 'ja'),
+  '/web-nikki/posts/2026-03-05/'
+)
+assert.equal(
+  getLocalizedPath('/posts/2026-03-05/', 'en'),
+  '/web-nikki/en/posts/2026-03-05/'
+)
+assert.equal(
+  getLocalizedPath('/posts/2026-03-05/', 'zh'),
+  '/web-nikki/zh/posts/2026-03-05/'
+)
+assert.equal(
+  getPostPath({
+    id: 'en/2026-03-05',
+    data: { language: 'en', postSlug: '2026-03-05' }
+  } as Post),
+  '/web-nikki/en/posts/2026-03-05/'
+)
+assert.equal(
+  getLanguageFromPost({ id: '2026-03-05', data: {} } as Post),
+  'ja'
+)
 
 assert.equal(
   getKeywordSummary({

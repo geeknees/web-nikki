@@ -21,13 +21,22 @@ const articleHtml = readFileSync(
   join(cwd, 'dist/posts/2026-03-05/index.html'),
   'utf8'
 )
+const englishHomepageHtml = readFileSync(join(cwd, 'dist/en/index.html'), 'utf8')
+const englishArticleHtml = readFileSync(
+  join(cwd, 'dist/en/posts/2026-03-05/index.html'),
+  'utf8'
+)
+const chineseArticleHtml = readFileSync(
+  join(cwd, 'dist/zh/posts/2026-03-05/index.html'),
+  'utf8'
+)
 
 assert.match(homepageHtml, /<html lang="ja-jp">/)
 assert.match(
   homepageHtml,
   /<link rel="canonical" href="https:\/\/geeknees\.github\.io\/web-nikki\/">/
 )
-assert.match(homepageHtml, /href="\/web-nikki\/categories"/)
+assert.match(homepageHtml, /href="\/web-nikki\/categories\/"/)
 assert.match(homepageHtml, /<script type="application\/ld\+json">/)
 assert.match(homepageHtml, /"@type":"WebSite"/)
 
@@ -41,6 +50,14 @@ assert.match(
   sitemapXml,
   /<loc>https:\/\/geeknees\.github\.io\/web-nikki\/posts\/2026-03-05\/<\/loc>/
 )
+assert.match(
+  sitemapXml,
+  /<loc>https:\/\/geeknees\.github\.io\/web-nikki\/en\/posts\/2026-03-05\/<\/loc>/
+)
+assert.match(
+  sitemapXml,
+  /<loc>https:\/\/geeknees\.github\.io\/web-nikki\/zh\/posts\/2026-03-05\/<\/loc>/
+)
 
 assert.match(articleHtml, /"@type":"BlogPosting"/)
 assert.match(articleHtml, /"inLanguage":"ja-jp"/)
@@ -48,8 +65,20 @@ assert.match(
   articleHtml,
   /<link rel="canonical" href="https:\/\/geeknees\.github\.io\/web-nikki\/posts\/2026-03-05\/">/
 )
-assert.match(articleHtml, /href="\/web-nikki\/categories\/AIとインターネット"/)
+assert.match(articleHtml, /href="\/web-nikki\/categories\/AIとインターネット\/"/)
 assert.match(articleHtml, /<h2 class="post-title">キーワード<\/h2>/)
 assert.match(articleHtml, /# SNS/)
+
+assert.match(englishHomepageHtml, /<html lang="en-us">/)
+assert.match(englishHomepageHtml, /Social media is broken/)
+assert.match(englishHomepageHtml, /href="\/web-nikki\/zh\/"/)
+assert.match(englishArticleHtml, /"inLanguage":"en-us"/)
+assert.match(englishArticleHtml, /<h2 class="post-title">Keywords<\/h2>/)
+assert.match(
+  englishArticleHtml,
+  /rel="alternate" href="https:\/\/geeknees\.github\.io\/web-nikki\/zh\/posts\/2026-03-05\/" hreflang="zh-cn"/
+)
+assert.match(chineseArticleHtml, /"inLanguage":"zh-cn"/)
+assert.match(chineseArticleHtml, /<h2 class="post-title">关键词<\/h2>/)
 
 console.log('integration: build output SEO assertions passed')

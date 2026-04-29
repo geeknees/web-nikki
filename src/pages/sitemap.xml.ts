@@ -5,6 +5,13 @@ import type { APIContext } from 'astro'
 
 import { getCategories, getPathFromCategory, getPosts } from '~/utils'
 import { THEME_CONFIG } from '~/theme.config'
+import {
+  DEFAULT_LANGUAGE,
+  getLocalizedPath,
+  getPostPath,
+  SITE_LANGUAGES,
+  type SiteLanguage
+} from '~/i18n'
 
 function getAbsoluteUrl(pathname: string) {
   return new URL(pathname, THEME_CONFIG.website).toString()
@@ -19,8 +26,9 @@ function createSitemapEntry(url: string, lastModified?: Date) {
 }
 
 export async function GET(_context: APIContext) {
-  const posts = await getPosts()
-  const categories = await getCategories()
+  const languages = Object.keys(SITE_LANGUAGES) as SiteLanguage[]
+  const posts = await getPosts({ language: DEFAULT_LANGUAGE })
+  const categories = await getCategories(DEFAULT_LANGUAGE)
 
   const staticEntries = [
     createSitemapEntry(getAbsoluteUrl('/web-nikki/')),
@@ -47,10 +55,43 @@ export async function GET(_context: APIContext) {
     )
   )
 
+  const localizedEntries = (
+    await Promise.all(
+      languages
+        .filter((language) => language !== DEFAULT_LANGUAGE)
+        .map(async (language) => {
+          const localizedPosts = await getPosts({ language })
+          const localizedCategories = await getCategories(language)
+
+          return [
+            createSitemapEntry(getAbsoluteUrl(getLocalizedPath('/', language))),
+            createSitemapEntry(getAbsoluteUrl(getLocalizedPath('/archive/', language))),
+            createSitemapEntry(getAbsoluteUrl(getLocalizedPath('/categories/', language))),
+            ...Array.from(localizedCategories.keys()).map((category) =>
+              createSitemapEntry(
+                getAbsoluteUrl(
+                  getLocalizedPath(
+                    `/categories/${getPathFromCategory(
+                      category,
+                      THEME_CONFIG.category_map
+                    )}/`,
+                    language
+                  )
+                )
+              )
+            ),
+            ...localizedPosts.map((post) =>
+              createSitemapEntry(getAbsoluteUrl(getPostPath(post)), post.data.pubDate)
+            )
+          ]
+        })
+    )
+  ).flat()
+
   const body =
     '<?xml version="1.0" encoding="UTF-8"?>' +
     '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' +
-    [...staticEntries, ...categoryEntries, ...postEntries].join('') +
+    [...staticEntries, ...categoryEntries, ...postEntries, ...localizedEntries].join('') +
     '</urlset>'
 
   return new Response(body, {

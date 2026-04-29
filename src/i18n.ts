@@ -1,3 +1,36 @@
+// ABOUTME: Defines supported site languages, UI copy, and route helpers.
+// ABOUTME: Keeps Japanese URLs stable while adding prefixed English and Chinese pages.
+
+export const DEFAULT_LANGUAGE = 'ja'
+export const SITE_BASE_PATH = '/web-nikki'
+
+export const SITE_LANGUAGES = {
+  ja: {
+    locale: 'ja-jp',
+    label: '日本語',
+    pathPrefix: '',
+    title: 'Web日記（web-nikki）',
+    desc: "geeknees's Web日記（web-nikki）"
+  },
+  en: {
+    locale: 'en-us',
+    label: 'English',
+    pathPrefix: '/en',
+    title: 'Web Diary (web-nikki)',
+    desc: "geeknees's web diary about engineering, product work, learning, and everyday life."
+  },
+  zh: {
+    locale: 'zh-cn',
+    label: '中文',
+    pathPrefix: '/zh',
+    title: 'Web日记（web-nikki）',
+    desc: 'geeknees 关于工程、产品、学习与生活的网络日记。'
+  }
+} as const
+
+export type SiteLanguage = keyof typeof SITE_LANGUAGES
+export const TRANSLATED_LANGUAGES: SiteLanguage[] = ['en', 'zh']
+
 export const LANGUAGES = {
   'zh-cn': {
     Home: '首页',
@@ -21,6 +54,9 @@ export const LANGUAGES = {
     next: '下一页',
     prev_post: '上一篇',
     next_post: '下一篇',
+    language: '语言',
+    read_by_topic: '按主题阅读',
+    keywords: '关键词',
   },
   'en-us': {
     Home: 'Home',
@@ -44,6 +80,9 @@ export const LANGUAGES = {
     next: 'Next',
     prev_post: 'Previous post',
     next_post: 'Next post',
+    language: 'Language',
+    read_by_topic: 'Read by topic',
+    keywords: 'Keywords',
   },
   'zh-tw': {
     Home: '首頁',
@@ -67,6 +106,9 @@ export const LANGUAGES = {
     next: '下一頁',
     prev_post: '上一篇',
     next_post: '下一篇',
+    language: '語言',
+    read_by_topic: '按主題閱讀',
+    keywords: '關鍵詞',
   },
   'ja-jp': {
     Home: 'ホーム',
@@ -90,6 +132,90 @@ export const LANGUAGES = {
     next: '次へ',
     prev_post: '前の投稿',
     next_post: '次の投稿',
+    language: '言語',
+    read_by_topic: 'テーマ別に読む',
+    keywords: 'キーワード',
   },
 }
 
+export function isSiteLanguage(value: string): value is SiteLanguage {
+  return value in SITE_LANGUAGES
+}
+
+export function getLocaleFromLanguage(language: SiteLanguage) {
+  return SITE_LANGUAGES[language].locale
+}
+
+export function getLanguageFromLocale(locale: keyof typeof LANGUAGES): SiteLanguage {
+  const language = Object.entries(SITE_LANGUAGES).find(
+    ([, config]) => config.locale === locale
+  )?.[0]
+
+  if (language && isSiteLanguage(language)) {
+    return language
+  }
+
+  return DEFAULT_LANGUAGE
+}
+
+function stripBasePath(pathname: string) {
+  if (pathname === SITE_BASE_PATH) return '/'
+  if (pathname.startsWith(`${SITE_BASE_PATH}/`)) {
+    return pathname.slice(SITE_BASE_PATH.length) || '/'
+  }
+
+  return pathname || '/'
+}
+
+export function getLanguageFromPathname(pathname: string): SiteLanguage {
+  const normalized = stripBasePath(pathname)
+  const firstSegment = normalized.split('/').filter(Boolean)[0]
+
+  return firstSegment && isSiteLanguage(firstSegment)
+    ? firstSegment
+    : DEFAULT_LANGUAGE
+}
+
+export function stripLanguagePathPrefix(pathname: string) {
+  const normalized = stripBasePath(pathname)
+  const segments = normalized.split('/').filter(Boolean)
+
+  if (segments[0] && isSiteLanguage(segments[0])) {
+    segments.shift()
+  }
+
+  return `/${segments.join('/')}`.replace(/\/$/, '') || '/'
+}
+
+export function getLocalizedPath(pathname: string, language: SiteLanguage) {
+  const pathWithoutLanguage = stripLanguagePathPrefix(pathname)
+  const prefix = SITE_LANGUAGES[language].pathPrefix
+  const suffix = pathWithoutLanguage === '/' ? '/' : `${pathWithoutLanguage}/`
+  const localizedPath = `${SITE_BASE_PATH}${prefix}${suffix}`
+
+  return localizedPath.replace(/\/{2,}/g, '/')
+}
+
+export function getLanguageSwitcherLinks(pathname: string) {
+  return Object.entries(SITE_LANGUAGES).map(([language, config]) => ({
+    language: language as SiteLanguage,
+    label: config.label,
+    href: getLocalizedPath(pathname, language as SiteLanguage)
+  }))
+}
+
+export function getLanguageFromPost(post: Post): SiteLanguage {
+  const language = post.data.language
+  return typeof language === 'string' && isSiteLanguage(language)
+    ? language
+    : DEFAULT_LANGUAGE
+}
+
+export function getPostSlug(post: Post) {
+  return post.data.postSlug ?? post.id.split('/').at(-1) ?? post.id
+}
+
+export function getPostPath(post: Post) {
+  const language = getLanguageFromPost(post)
+  return getLocalizedPath(`/posts/${getPostSlug(post)}/`, language)
+}

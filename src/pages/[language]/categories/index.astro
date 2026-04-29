@@ -1,14 +1,25 @@
 ---
+// ABOUTME: Localized category index for translated post collections.
+// ABOUTME: Counts categories only from posts in the current language.
+
 import ListItem from '~/components/ListItem.astro'
 import ListSection from '~/components/ListSection.astro'
 import LayoutDefault from '~/layouts/LayoutDefault.astro'
 import { getCategories, getPathFromCategory } from '~/utils/index'
-import { DEFAULT_LANGUAGE, getLocalizedPath } from '~/i18n'
+import { getLocalizedPath, TRANSLATED_LANGUAGES } from '~/i18n'
+
+export function getStaticPaths() {
+  return TRANSLATED_LANGUAGES.map((language) => ({
+    params: { language },
+    props: { language }
+  }))
+}
 
 const { translate: t } = Astro.locals
 const { category_map } = Astro.locals.config
+const { language } = Astro.props
 
-const categories = await getCategories(DEFAULT_LANGUAGE)
+const categories = await getCategories(language)
 ---
 
 <LayoutDefault>
@@ -19,7 +30,7 @@ const categories = await getCategories(DEFAULT_LANGUAGE)
           title={key}
           href={getLocalizedPath(
             `/categories/${getPathFromCategory(key, category_map)}/`,
-            DEFAULT_LANGUAGE
+            language
           )}
           description={t('categories_count', value.length)}
         />

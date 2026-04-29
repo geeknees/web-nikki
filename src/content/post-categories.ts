@@ -15,11 +15,17 @@ function isHomepagePostCategory(category: string): category is HomepagePostCateg
   return HOMEPAGE_POST_CATEGORY_ORDER.includes(category as HomepagePostCategory)
 }
 
+function getPostIdentifier(post: Post) {
+  const postWithSlug = post as Post & { slug?: string }
+
+  return postWithSlug.id ?? postWithSlug.slug ?? ''
+}
+
 export function getHomepageCategoryName(post: Post): HomepagePostCategory {
   const category = post.data.categories.find(isHomepagePostCategory)
 
   if (!category) {
-    throw new Error(`Missing homepage category in frontmatter for slug: ${post.id}`)
+    throw new Error(`Missing homepage category in frontmatter for slug: ${getPostIdentifier(post)}`)
   }
 
   return category
@@ -32,7 +38,7 @@ export function getHomepageCategorySelections(posts: Post[], excludedSlugs: stri
     const post = posts.find(
       (candidate) =>
         getHomepageCategoryName(candidate) === category &&
-        !excludedSlugSet.has(candidate.id)
+        !excludedSlugSet.has(getPostIdentifier(candidate))
     )
 
     if (!post) {

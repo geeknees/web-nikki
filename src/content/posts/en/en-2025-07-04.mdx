@@ -1,0 +1,40 @@
+---
+title: An update on product development with AI
+description: About a year ago I wrote about product development with AI. One point now needs to be updated, so I am adding this note.
+pubDate: '2025-07-04T23:50'
+language: en
+translationKey: '2025-07-04'
+postSlug: '2025-07-04'
+categories: ['AI and the Internet', 'Product']
+keywords: ['AI agents', 'Code generation', 'Product development', 'Workflow', 'LLM']
+---
+
+About a year ago I wrote [an article about product development with AI](https://geeknees.github.io/web-nikki/posts/2024-08-04_ai_human_collab/).
+There is one point that now seems to need an update, so I am adding this note.
+
+In that article, I wrote that when introducing AI, it is very effective to start with a hybrid model between humans and AI.
+Looking at recent progress in AI, especially in coding, I now think that view needs to be revised.
+With the arrival of Claude Code, Gemini CLI, ROVO DEV, and similar tools, AI can now write code directly, and its code generation ability has improved substantially.
+The following workflow seems especially useful:
+
+1. Use a non-reasoning mode such as 4.1 to brainstorm ideas.
+2. Use a reasoning-focused AI such as o3 in a Q&A format to settle the specification.
+3. In the same context, have it generate prompts that split the work into tasks.
+4. Save the resulting specification and prompts as something like `Spec.md`.
+5. Give the split prompts, based on the document, to coding agents for implementation.
+
+This workflow is based on the approach introduced in [Harper Reed's Blog](https://harper.blog/2025/02/16/my-llm-codegen-workflow-atm/).
+
+Because this method specializes AI for writing code, it can make the most of AI's code generation ability.
+If we extend the method further, the same approach may become useful not only for coding, but also for planning documents, scenario writing, and other domains.
+Seen this way, the human and AI hybrid model may not always be the best answer.
+
+Research such as [Future of Work with AI Agents](https://arxiv.org/pdf/2506.06576) is also advancing, and AI agents are likely to evolve in ways that complement human work.
+This will probably change approaches to product development with AI as well.
+The figure below seems especially useful as a reference.
+
+![AI Agents in the Future of Work](/web-nikki/img/blog/HAS.png)
+
+Many discussions tend to separate what AI is good at from what humans are good at.
+But if AI agents continue to evolve as complements to human work, the division of roles between AI and humans will become more flexible and more gradual.
+In that case, it seems more efficient to classify and review entire processes by level, assuming that range of possibilities.

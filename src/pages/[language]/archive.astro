@@ -1,11 +1,22 @@
 ---
+// ABOUTME: Localized archive page grouping translated posts by publication year.
+// ABOUTME: Keeps English and Chinese archives filtered to their own language.
+
 import LayoutDefault from '~/layouts/LayoutDefault.astro'
 import ListSection from '~/components/ListSection.astro'
 import ListItem from '~/components/ListItem.astro'
 import { getPosts, getPostTaxonomySummary } from '~/utils'
-import { DEFAULT_LANGUAGE, getPostPath } from '~/i18n'
+import { getPostPath, TRANSLATED_LANGUAGES } from '~/i18n'
 
-const posts = await getPosts({ language: DEFAULT_LANGUAGE })
+export function getStaticPaths() {
+  return TRANSLATED_LANGUAGES.map((language) => ({
+    params: { language },
+    props: { language }
+  }))
+}
+
+const { language } = Astro.props
+const posts = await getPosts({ language })
 
 const postByYear = new Map<number, Post[]>()
 posts.forEach((post: Post) => {

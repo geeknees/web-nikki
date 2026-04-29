@@ -1,12 +1,32 @@
+// ABOUTME: Sets request-local theme config and translation helpers from the URL language.
+// ABOUTME: Allows Japanese root pages and prefixed English/Chinese pages to share components.
+
 import { defineMiddleware } from 'astro:middleware';
 import { THEME_CONFIG } from "~/theme.config.ts";
-import { LANGUAGES } from "~/i18n.ts";
+import {
+  getLanguageFromPathname,
+  getLocalizedPath,
+  getLocaleFromLanguage,
+  LANGUAGES,
+  SITE_LANGUAGES
+} from "~/i18n.ts";
 
 export const onRequest = defineMiddleware(async (context, next) => {
   // Adding properties in env.d.ts
-  context.locals.config = THEME_CONFIG;
+  const language = getLanguageFromPathname(context.url.pathname);
+  const languageConfig = SITE_LANGUAGES[language];
+  const locale = getLocaleFromLanguage(language);
 
-  let locale = context.locals.config.locale;
+  context.locals.config = {
+    ...THEME_CONFIG,
+    title: languageConfig.title,
+    desc: languageConfig.desc,
+    locale,
+    navs: THEME_CONFIG.navs.map((nav) => ({
+      ...nav,
+      href: getLocalizedPath(nav.href, language)
+    }))
+  };
 
   const localeTranslate = LANGUAGES[locale];
 
