@@ -1,4 +1,6 @@
 ---
+// ABOUTME: Provides the shared document shell and SEO metadata for every page.
+// ABOUTME: Centralizes crawler-visible title, favicon, social, and structured-data signals.
 import '~/styles/index.css'
 // https://sivan.github.io/heti
 import '~/styles/heti.min.css'
@@ -30,7 +32,7 @@ const { header } = Astro.locals.config
 const pageTitle = props.title ?? themeConfig.title
 const title = props.title
   ? `${props.title} - ${themeConfig.title}`
-  : `${themeConfig.title}`
+  : `${themeConfig.title} - ${themeConfig.author}`
 const desc = props.desc ?? themeConfig.desc
 const canonical = normalizeCanonicalUrl(Astro.url)
 const noindex = props.noindex ?? false
@@ -78,7 +80,20 @@ const structuredData = props.publishedTime
       description={desc}
       extend={{
         link: [
+          {
+            rel: 'icon',
+            href: '/web-nikki/favicon-48x48.png',
+            type: 'image/png',
+            sizes: '48x48'
+          },
           { rel: 'icon', href: '/web-nikki/favicon.svg', type: 'image/svg+xml' },
+          { rel: 'icon', href: '/web-nikki/favicon.ico', sizes: 'any' },
+          {
+            rel: 'apple-touch-icon',
+            href: '/web-nikki/apple-touch-icon.png',
+            sizes: '180x180'
+          },
+          { rel: 'manifest', href: '/web-nikki/site.webmanifest' },
           ...(props.alternates ?? []).map((alternate) => ({
             rel: 'alternate',
             href: alternate.href,
@@ -86,6 +101,9 @@ const structuredData = props.publishedTime
           }))
         ],
         meta: [
+          { name: 'application-name', content: themeConfig.title },
+          { name: 'apple-mobile-web-app-title', content: themeConfig.title },
+          { property: 'og:site_name', content: themeConfig.title },
           ...(props.keywords?.length
             ? [{ name: 'keywords', content: props.keywords.join(', ') }]
             : []),

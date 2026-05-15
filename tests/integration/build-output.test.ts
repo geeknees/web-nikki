@@ -37,13 +37,35 @@ const rubyKaigiArticleHtml = readFileSync(rubyKaigiArticlePath, 'utf8')
 const generatedPostRoutes = readdirSync(join(cwd, 'dist/posts'))
 
 assert.match(homepageHtml, /<html lang="ja-jp">/)
+assert.match(homepageHtml, /<title>Web日記（web-nikki） - geeknees<\/title>/)
+assert.doesNotMatch(homepageHtml, /GitHub Pages documentation/)
 assert.match(
   homepageHtml,
   /<link rel="canonical" href="https:\/\/geeknees\.github\.io\/web-nikki\/">/
 )
+assert.match(
+  homepageHtml,
+  /<link rel="icon" href="\/web-nikki\/favicon-48x48\.png" type="image\/png" sizes="48x48">/
+)
+assert.match(
+  homepageHtml,
+  /<link rel="icon" href="\/web-nikki\/favicon\.ico" sizes="any">/
+)
+assert.match(
+  homepageHtml,
+  /<link rel="apple-touch-icon" href="\/web-nikki\/apple-touch-icon\.png" sizes="180x180">/
+)
+assert.match(homepageHtml, /<link rel="manifest" href="\/web-nikki\/site\.webmanifest">/)
 assert.match(homepageHtml, /href="\/web-nikki\/categories\/"/)
 assert.match(homepageHtml, /<script type="application\/ld\+json">/)
 assert.match(homepageHtml, /"@type":"WebSite"/)
+assert.ok(existsSync(join(cwd, 'dist/favicon-48x48.png')), 'favicon PNG is missing')
+assert.ok(existsSync(join(cwd, 'dist/favicon.ico')), 'favicon ICO is missing')
+assert.ok(
+  existsSync(join(cwd, 'dist/apple-touch-icon.png')),
+  'Apple touch icon is missing'
+)
+assert.ok(existsSync(join(cwd, 'dist/site.webmanifest')), 'web manifest is missing')
 
 assert.match(archiveHtml, /教育 \/ AIとインターネット/)
 assert.match(archiveHtml, /SNS \/ X \/ YouTube/)
