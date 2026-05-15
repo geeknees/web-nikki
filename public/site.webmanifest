@@ -1,0 +1,27 @@
+{
+  "name": "Web日記（web-nikki）",
+  "short_name": "web-nikki",
+  "description": "geeknees's Web日記（web-nikki）",
+  "start_url": "/web-nikki/",
+  "scope": "/web-nikki/",
+  "display": "minimal-ui",
+  "background_color": "#fff7eb",
+  "theme_color": "#2e405b",
+  "icons": [
+    {
+      "src": "/web-nikki/favicon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/web-nikki/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "/web-nikki/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
