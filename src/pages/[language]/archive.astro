@@ -2,11 +2,9 @@
 // ABOUTME: Localized archive page grouping translated posts by publication year.
 // ABOUTME: Keeps English and Chinese archives filtered to their own language.
 
-import LayoutDefault from '~/layouts/LayoutDefault.astro'
-import ListSection from '~/components/ListSection.astro'
-import ListItem from '~/components/ListItem.astro'
-import { getPosts, getPostTaxonomySummary } from '~/utils'
-import { getPostPath, TRANSLATED_LANGUAGES } from '~/i18n'
+import ArchiveList from '~/components/ArchiveList.astro'
+import { getPosts } from '~/utils'
+import { TRANSLATED_LANGUAGES } from '~/i18n'
 
 export function getStaticPaths() {
   return TRANSLATED_LANGUAGES.map((language) => ({
@@ -17,32 +15,6 @@ export function getStaticPaths() {
 
 const { language } = Astro.props
 const posts = await getPosts({ language })
-
-const postByYear = new Map<number, Post[]>()
-posts.forEach((post: Post) => {
-  const pubDate = post.data.pubDate ?? new Date()
-  const year = pubDate.getFullYear()
-  if (!postByYear.has(year)) {
-    postByYear.set(year, [])
-  }
-  postByYear.get(year)!.push(post)
-})
 ---
 
-<LayoutDefault>
-  <div un-flex='~ col gap-4'>
-    {
-      Array.from(postByYear.entries()).map(([year, posts]) => (
-        <ListSection title={year}>
-          {posts.map((post) => (
-            <ListItem
-              title={post.data.title}
-              href={getPostPath(post)}
-              description={getPostTaxonomySummary(post, { includeDate: true })}
-            />
-          ))}
-        </ListSection>
-      ))
-    }
-  </div>
-</LayoutDefault>
+<ArchiveList posts={posts} />

@@ -1,10 +1,8 @@
 ---
-import LayoutDefault from '~/layouts/LayoutDefault.astro'
-import ListSection from '~/components/ListSection.astro'
-import { getCategories, getPathFromCategory, getPostTaxonomySummary } from '~/utils'
-import ListItem from '~/components/ListItem.astro'
+import CategoryPostList from '~/components/CategoryPostList.astro'
+import { getCategories, getPathFromCategory } from '~/utils'
 import { THEME_CONFIG } from '~/theme.config'
-import { DEFAULT_LANGUAGE, getPostPath } from '~/i18n'
+import { DEFAULT_LANGUAGE } from '~/i18n'
 
 export async function getStaticPaths() {
   const categories = await getCategories(DEFAULT_LANGUAGE)
@@ -12,25 +10,12 @@ export async function getStaticPaths() {
     const path = getPathFromCategory(key, THEME_CONFIG.category_map)
     return {
       params: { category: path, name: key },
-      props: { posts: value }
+      props: { categoryName: key, posts: value }
     }
   })
 }
 
-const { posts } = Astro.props
-const { name } = Astro.params
+const { categoryName, posts } = Astro.props
 ---
 
-<LayoutDefault>
-  <ListSection title={name}>
-    {
-      posts.map((post) => (
-        <ListItem
-          title={post.data.title}
-          href={getPostPath(post)}
-          description={getPostTaxonomySummary(post, { includeDate: true })}
-        />
-      ))
-    }
-  </ListSection>
-</LayoutDefault>
+<CategoryPostList categoryName={categoryName} posts={posts} />

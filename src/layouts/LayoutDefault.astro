@@ -14,6 +14,7 @@ import {
   createWebSiteStructuredData,
   normalizeCanonicalUrl
 } from '~/utils/seo'
+import { SITE_LANGUAGES, withBasePath } from '~/i18n'
 
 interface Props {
   title?: string
@@ -44,9 +45,16 @@ const image =
     format: 'jpeg'
   }))
 const optimizedImage = new URL(
-  image?.src ?? '/web-nikki/placeholder.png',
+  image?.src ?? withBasePath('/placeholder.png'),
   Astro.url
 ).toString()
+const alternates = props.alternates ?? []
+const defaultAlternate = alternates.find(
+  (alternate) => alternate.hreflang === SITE_LANGUAGES.ja.locale
+)
+const linkAlternates = defaultAlternate
+  ? [...alternates, { ...defaultAlternate, hreflang: 'x-default' }]
+  : alternates
 const structuredData = props.publishedTime
   ? createArticleStructuredData({
       author: themeConfig.author,
@@ -71,7 +79,7 @@ const structuredData = props.publishedTime
   <head>
     <meta name='viewport' content='width=device-width' />
     <meta name='generator' content={Astro.generator} />
-    <link rel="sitemap" href="/web-nikki/sitemap.xml" />
+    <link rel="sitemap" href={withBasePath('/sitemap.xml')} />
     <SEO
       charset='utf-8'
       canonical={canonical}
@@ -82,19 +90,19 @@ const structuredData = props.publishedTime
         link: [
           {
             rel: 'icon',
-            href: '/web-nikki/favicon-48x48.png',
+            href: withBasePath('/favicon-48x48.png'),
             type: 'image/png',
             sizes: '48x48'
           },
-          { rel: 'icon', href: '/web-nikki/favicon.svg', type: 'image/svg+xml' },
-          { rel: 'icon', href: '/web-nikki/favicon.ico', sizes: 'any' },
+          { rel: 'icon', href: withBasePath('/favicon.svg'), type: 'image/svg+xml' },
+          { rel: 'icon', href: withBasePath('/favicon.ico'), sizes: 'any' },
           {
             rel: 'apple-touch-icon',
-            href: '/web-nikki/apple-touch-icon.png',
+            href: withBasePath('/apple-touch-icon.png'),
             sizes: '180x180'
           },
-          { rel: 'manifest', href: '/web-nikki/site.webmanifest' },
-          ...(props.alternates ?? []).map((alternate) => ({
+          { rel: 'manifest', href: withBasePath('/site.webmanifest') },
+          ...linkAlternates.map((alternate) => ({
             rel: 'alternate',
             href: alternate.href,
             hreflang: alternate.hreflang

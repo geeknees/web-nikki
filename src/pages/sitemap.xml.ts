@@ -10,6 +10,7 @@ import {
   getLocalizedPath,
   getPostPath,
   SITE_LANGUAGES,
+  withBasePath,
   type SiteLanguage
 } from '~/i18n'
 
@@ -31,19 +32,18 @@ export async function GET(_context: APIContext) {
   const categories = await getCategories(DEFAULT_LANGUAGE)
 
   const staticEntries = [
-    createSitemapEntry(getAbsoluteUrl('/web-nikki/')),
-    createSitemapEntry(getAbsoluteUrl('/web-nikki/about/')),
-    createSitemapEntry(getAbsoluteUrl('/web-nikki/archive/')),
-    createSitemapEntry(getAbsoluteUrl('/web-nikki/categories/'))
+    createSitemapEntry(getAbsoluteUrl(withBasePath('/'))),
+    createSitemapEntry(getAbsoluteUrl(withBasePath('/archive/'))),
+    createSitemapEntry(getAbsoluteUrl(withBasePath('/categories/')))
   ]
 
   const categoryEntries = Array.from(categories.keys()).map((category) =>
     createSitemapEntry(
       getAbsoluteUrl(
-        `/web-nikki/categories/${getPathFromCategory(
+        withBasePath(`/categories/${getPathFromCategory(
           category,
           THEME_CONFIG.category_map
-        )}/`
+        )}/`)
       )
     )
   )

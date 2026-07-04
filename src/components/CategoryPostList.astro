@@ -1,0 +1,31 @@
+---
+// ABOUTME: Renders posts belonging to one category.
+// ABOUTME: Keeps category detail pages identical across default and localized routes.
+
+import ListItem from '~/components/ListItem.astro'
+import ListSection from '~/components/ListSection.astro'
+import LayoutDefault from '~/layouts/LayoutDefault.astro'
+import { getPostTaxonomySummary } from '~/utils'
+import { getPostPath } from '~/i18n'
+
+interface Props {
+  categoryName: string
+  posts: Post[]
+}
+
+const { categoryName, posts } = Astro.props
+---
+
+<LayoutDefault>
+  <ListSection title={categoryName}>
+    {
+      posts.map((post) => (
+        <ListItem
+          title={post.data.title}
+          href={getPostPath(post)}
+          description={getPostTaxonomySummary(post, { includeDate: true })}
+        />
+      ))
+    }
+  </ListSection>
+</LayoutDefault>

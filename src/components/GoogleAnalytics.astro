@@ -1,18 +1,22 @@
 ---
 import { isProduction } from "~/utils/";
+
+const measurementId = Astro.locals.config.googleAnalyticsId
+const trackingScript = measurementId
+  ? `window.dataLayer = window.dataLayer || []
+function gtag() {
+  dataLayer.push(arguments)
+}
+gtag('js', new Date())
+gtag('config', ${JSON.stringify(measurementId)})`
+  : ''
 ---
 
-{isProduction && <script
-  is:inline
-  type='text/partytown'
-  src='https://www.googletagmanager.com/gtag/js?id=G-C536MZEKVL'></script>
-<script is:inline type='text/partytown'>
-  window.dataLayer = window.dataLayer || []
-  function gtag() {
-    dataLayer.push(arguments)
-  }
-  gtag('js', new Date())
-
-  gtag('config', 'G-C536MZEKVL')
-</script>
+{isProduction && measurementId && <>
+  <script
+    is:inline
+    type='text/partytown'
+    src={`https://www.googletagmanager.com/gtag/js?id=${measurementId}`}></script>
+  <script is:inline type='text/partytown' set:html={trackingScript} />
+</>
 }

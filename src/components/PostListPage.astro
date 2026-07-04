@@ -1,0 +1,49 @@
+---
+// ABOUTME: Renders a paginated post listing for default and localized routes.
+// ABOUTME: Normalizes Astro pagination URLs through the language-aware route helper.
+
+import LayoutDefault from '~/layouts/LayoutDefault.astro'
+import Pagination from '~/components/Pagination.astro'
+import PostBody from '~/components/Post.astro'
+import { getPostDescription } from '~/utils'
+import { getLocalizedPath, type SiteLanguage } from '~/i18n'
+
+interface Props {
+  page: {
+    data: Post[]
+    currentPage: number
+    lastPage: number
+    url: {
+      prev?: string
+      next?: string
+    }
+  }
+  language: SiteLanguage
+}
+
+const { page, language } = Astro.props
+const { translate: t } = Astro.locals
+---
+
+<LayoutDefault noindex={page.currentPage > 1}>
+  <section contain-layout un-flex='~ col gap-7.5'>
+    {
+      page.data.map((post) => (
+        <PostBody post={post}>
+          <p class='line-clamp-4'>{getPostDescription(post)}</p>
+        </PostBody>
+      ))
+    }
+
+    <Pagination
+      showLeft={Boolean(page.url.prev)}
+      leftTitle={t('prev')}
+      leftUrl={page.url.prev ? getLocalizedPath(page.url.prev, language) : ''}
+      showRight={Boolean(page.url.next)}
+      rightTitle={t('next')}
+      rightUrl={page.url.next ? getLocalizedPath(page.url.next, language) : ''}
+      currentPage={page.currentPage}
+      totalPage={page.lastPage}
+    />
+  </section>
+</LayoutDefault>

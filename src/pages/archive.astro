@@ -1,37 +1,9 @@
 ---
-import LayoutDefault from '~/layouts/LayoutDefault.astro'
-import ListSection from '~/components/ListSection.astro'
-import ListItem from '~/components/ListItem.astro'
-import { getPosts, getPostTaxonomySummary } from '~/utils'
-import { DEFAULT_LANGUAGE, getPostPath } from '~/i18n'
+import ArchiveList from '~/components/ArchiveList.astro'
+import { getPosts } from '~/utils'
+import { DEFAULT_LANGUAGE } from '~/i18n'
 
 const posts = await getPosts({ language: DEFAULT_LANGUAGE })
-
-const postByYear = new Map<number, Post[]>()
-posts.forEach((post: Post) => {
-  const pubDate = post.data.pubDate ?? new Date()
-  const year = pubDate.getFullYear()
-  if (!postByYear.has(year)) {
-    postByYear.set(year, [])
-  }
-  postByYear.get(year)!.push(post)
-})
 ---
 
-<LayoutDefault>
-  <div un-flex='~ col gap-4'>
-    {
-      Array.from(postByYear.entries()).map(([year, posts]) => (
-        <ListSection title={year}>
-          {posts.map((post) => (
-            <ListItem
-              title={post.data.title}
-              href={getPostPath(post)}
-              description={getPostTaxonomySummary(post, { includeDate: true })}
-            />
-          ))}
-        </ListSection>
-      ))
-    }
-  </div>
-</LayoutDefault>
+<ArchiveList posts={posts} />

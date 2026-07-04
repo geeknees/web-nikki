@@ -1,200 +1,77 @@
-# 活版印字
+# web-nikki
 
-<p align='center'>
-  <img src='./public/typograph-og.jpg' alt='Typography' width='600'/>
-</p>
-<h6 align='center'>
-<a href="https://astro-theme-typography.vercel.app/">在线预览</a>
-</h6>
-<h5 align='center'>
-<b>此主题系 Hexo 主题 <a href="https://github.com/sumimakito/hexo-theme-typography">活版印字</a> 在 Astro 平台上的移植版本</b>
-</h5>
+个人博客，发布地址：<https://geeknees.github.io/web-nikki/>。
 
-<p align='center'>
-<a href="./README.md">English</a> |<b>简体中文</b>
-</p>
+这个仓库是一个 Astro 静态站点，用于发布日文文章及其英文、中文翻译。它最初来自 `astro-theme-typography`，但现在按本站需求独立维护，不再作为通用主题使用。
 
-## 特性
+## 技术栈
 
-- 使用 **Astro**、**TypeScript** 和 **UnoCSS** 构建。
-- **快速**:100% [Pagespeed Score](https://pagespeed.web.dev/analysis/https-astro-theme-typography-vercel-app/j34nq9tx0s?form_factor=desktop)。
-- **排版**: 根据流行的中文排版规范派生出的排版，旨在为网站访客提供更佳的阅读体验。
-- **响应式**: 响应式设计，适用于所有屏幕尺寸。
-- **易访问**: 深思熟虑的语义和易访问内容。
-- **SEO 友好**: 支持 **Open Graph** 和 **Twitter Cards**，提供更好的社交分享体验。
-- 为搜索引擎提供 **站点地图** 和 **RSS** 订阅。
-- 支持 i18n 国际化。
-- 支持 Disqus、Giscus、Twikoo 作为评论服务。
-- 支持暗色模式。
+- Astro 7、TypeScript、UnoCSS
+- Astro content collections 管理文章
+- GitHub Pages 部署
+- Atom feed 和自定义 sitemap route
+- 日文页面在根路径，英文和中文页面分别在 `/en` 和 `/zh`
 
-## Demo
+## 开发
 
-> 提交一个 PR 来添加你的博客 Demo。
+安装依赖：
 
-- [Live Demo](https://astro-theme-typography.vercel.app/)
-- [My Blog](https://blog.moeyua.com/)
-
-## 开始使用
-
-这是一个轻巧、响应式设计且对 SEO 友好的 Astro 博客主题。本指南将帮助您开始一个新项目。
-
-### 快速开始
-
-您可以通过点击右上角的 Fork 按钮，将仓库克隆到你的账号下，点击下面的按钮，选择你刚刚 Fork 的仓库，点击 Import 按钮，即可进入到项目配置页面。
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new)
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start)
-
-或者你也可以参考[Astro](https://docs.astro.build/zh-cn/guides/deploy/)的文档，部署到你喜欢的平台。
-
-### 添加文章
-
-您可以通过在 `src/content/posts`中创建一个新的文件来添加内容。该文件需要前面的元数据，如下所示：
-
-```md
----
-title: title
-pubDate: 2021-08-01
-categories: ['article']
-description: 'description'
----
+```bash
+pnpm install
 ```
 
-或者，您可以在终端中使用以下命令创建新帖子：
+启动开发服务器：
+
+```bash
+pnpm dev
+```
+
+运行验证：
+
+```bash
+pnpm test
+```
+
+部署 workflow 会在上传 GitHub Pages artifact 前运行 `pnpm test`。
+
+## 内容
+
+日文文章放在 `src/content/posts/`。
+
+英文和中文翻译放在：
+
+- `src/content/posts/en/`
+- `src/content/posts/zh/`
+
+翻译文件名遵循以下规则：
+
+- 日文：`src/content/posts/<stem>.md`
+- 英文：`src/content/posts/en/en-<stem>.md`
+- 中文：`src/content/posts/zh/zh-<stem>.md`
+
+同一篇文章的三种语言版本应使用相同的 `translationKey`。内容 schema 还要求提供 `language`、`categories`、`keywords`、`pubDate`、`title` 和 `description`。
+
+创建新文章草稿：
 
 ```bash
 pnpm new-post
 ```
 
-## 更新主题
+## 配置
 
-您只需在自己 Fork 的项目上 [`Sync Fork`](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/syncing-a-fork) 即可（不要点击 Discard Changes，否则会丢失你自己的更改）。
+站点配置在 `src/theme.config.ts`。
 
-## 定制化
+路径和语言相关 helper 在 `src/i18n.ts`。唯一的 base path 来源是 `SITE_BASE_PATH`，当前为 `/web-nikki`；不要在组件或 route 中重复硬编码。
 
-「活版印字」主题是高度可定制的。配置文件在[src/theme.config.ts](src/theme.config.ts)
+Google Analytics 由 `src/theme.config.ts` 中的 `googleAnalyticsId` 控制。未设置时不会输出 tracking scripts。
 
-### 社交链接
+评论功能目前故意不启用。旧的 Disqus/Giscus/Twikoo 主题代码已删除，以减少未使用依赖和外部脚本风险。
 
-「活版印字」主题内置支持通过配置文件中的社交选项将指向您的社交媒体帐户的链接添加到网站：
+## 部署
 
-```ts
-socials: [
-  {
-    name: "github",
-    href: "https://github.com/moeyua/astro-theme-typography"
-  }
-  ...
-]
-```
+`.github/workflows/deploy.yml` 中的 GitHub Actions workflow 会：
 
-字段 `name` 是 [Material Design Icons](https://pictogrammers.com/library/mdi/) 中的图标名称，将自动生成为图标。
-
-### 导航链接
-
-默认情况下，导航是「文章」、「归档」、「分类」和「关于」。您可以在配置文件中添加更多内容：
-
-```ts
-navs: [
-  {
-    name: "Categories",
-    href: "/categories"
-  }
-  ...
-]
-```
-
-然后在`src/page`中添加相应的页面，在 [Astro Pages](https://docs.astro.build/en/core-concepts/astro-pages/)中查看更多
-
-### 黑暗模式
-
-「活版印字」主题支持深色模式。您可以在配置文件中更改它：
-
-```ts
-themeStyle: 'dart' // 'light' | 'dark'
-```
-
-
-### 国际化 (i18n)
-
-「活版印字」主题为多语言站点提供内置支持。默认情况下，语言为'en-us'，您可以在配置文件中更改它：
-
-```ts
-locale: "zh-cn"
-```
-
-目前，「活版印字」主题支持以下语言：
-- `en-us`
-- `zh-cn`
-- `zh-tw`
-- `ja-jp`
-
-您可以在[src/i18n.ts](src/i18n.ts)中查看所有支持的语言，并根据需要添加更多。
-
-### 评论
-
-「活版印字」主题支持多种评论服务，目前支持 [Disqus](https://disqus.com/)、[Giscus](https://giscus.app/) 和 [Twikoo](https://twikoo.js.org/)。
-
-通过添加配置文件来启用对应的评论服务，填写多个评论服务时，只会按照顺序显示第一个服务。
-
-#### Disqus
-
-在配置文件中添加您的 [Disqus](https://disqus.com/) Shortname：
-
-```ts
-comments: {
-  disqus: {
-    shortname: "your-disqus-shortname",
-  },
-}
-```
-
-### Giscus
-
-基于 [Giscus web component](https://github.com/giscus/giscus-component?tab=readme-ov-file#using-the-web-component) 实现。
-
-属性名称与 [giscus 网站](https://giscus.app/) 上显示的 data- 属性相同，但以小写形式编写，并删除了 data- 前缀并删除了破折号。
-
-在配置文件中添加您的 [Giscus](https://giscus.app/) 配置：
-
-```ts
-comments: {
-  giscus: {
-    repo: 'moeyua/astro-theme-typography',
-    repoId: 'R_kgDOKy9HOQ',
-    category: 'General',
-    categoryId: 'DIC_kwDOKy9HOc4CegmW',
-    mapping: 'title',
-    strict: '0',
-    reactionsEnabled: '1',
-    emitMetadata: '1',
-    inputPosition: 'top',
-    theme: 'light',
-    lang: 'zh-CN',
-    loading: 'lazy',
-  },
-}
-```
-
-#### Twikoo
-
-在配置文件中添加您的 [Twikoo](https://twikoo.js.org/) 配置：
-
-```ts
-comments: {
-  twikoo: {
-    envId: "your-env-id",
-  }
-}
-```
-
-## Pagespeed 分数
-
-[![Pagespeed Score](https://github.com/moeyua/astro-theme-typography/assets/45156493/2272f576-d6ff-49ef-a294-5c2acf365907)](https://pagespeed.web.dev/analysis/https-astro-theme-typography-vercel-app/j34nq9tx0s?form_factor=desktop)
-
-## TODO 
-
-- [ ] WebSub
-- [x] comment
-- [ ] search
-- [ ] analytics
+1. 使用 pnpm 安装依赖。
+2. 运行完整测试。
+3. 将 `dist/` 上传为 GitHub Pages artifact。
+4. 部署经过测试的 artifact。

@@ -73,6 +73,7 @@ assert.match(archiveHtml, /SNS \/ X \/ YouTube/)
 assert.match(robotsTxt, /Sitemap: https:\/\/geeknees\.github\.io\/web-nikki\/sitemap\.xml/)
 assert.match(sitemapXml, /<urlset xmlns="http:\/\/www\.sitemaps\.org\/schemas\/sitemap\/0\.9">/)
 assert.match(sitemapXml, /<loc>https:\/\/geeknees\.github\.io\/web-nikki\/<\/loc>/)
+assert.doesNotMatch(sitemapXml, /<loc>https:\/\/geeknees\.github\.io\/web-nikki\/about\/<\/loc>/)
 assert.match(
   sitemapXml,
   /<loc>https:\/\/geeknees\.github\.io\/web-nikki\/posts\/2026-03-05\/<\/loc>/
@@ -104,6 +105,10 @@ assert.match(englishArticleHtml, /<h2 class="post-title">Keywords<\/h2>/)
 assert.match(
   englishArticleHtml,
   /rel="alternate" href="https:\/\/geeknees\.github\.io\/web-nikki\/zh\/posts\/2026-03-05\/" hreflang="zh-cn"/
+)
+assert.match(
+  englishArticleHtml,
+  /rel="alternate" href="https:\/\/geeknees\.github\.io\/web-nikki\/posts\/2026-03-05\/" hreflang="x-default"/
 )
 assert.match(chineseArticleHtml, /"inLanguage":"zh-cn"/)
 assert.match(chineseArticleHtml, /<h2 class="post-title">关键词<\/h2>/)
