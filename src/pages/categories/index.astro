@@ -1,29 +1,9 @@
 ---
-import ListItem from '~/components/ListItem.astro'
-import ListSection from '~/components/ListSection.astro'
-import LayoutDefault from '~/layouts/LayoutDefault.astro'
-import { getCategories, getPathFromCategory } from '~/utils/index'
-import { DEFAULT_LANGUAGE, getLocalizedPath } from '~/i18n'
-
-const { translate: t } = Astro.locals
-const { category_map } = Astro.locals.config
+import CategoryIndex from '~/components/CategoryIndex.astro'
+import { getCategories } from '~/utils/index'
+import { DEFAULT_LANGUAGE } from '~/i18n'
 
 const categories = await getCategories(DEFAULT_LANGUAGE)
 ---
 
-<LayoutDefault>
-  <ListSection title={t('Categories')}>
-    {
-      Array.from(categories).map(([key, value]) => (
-        <ListItem
-          title={key}
-          href={getLocalizedPath(
-            `/categories/${getPathFromCategory(key, category_map)}/`,
-            DEFAULT_LANGUAGE
-          )}
-          description={t('categories_count', value.length)}
-        />
-      ))
-    }
-  </ListSection>
-</LayoutDefault>
+<CategoryIndex categories={categories} language={DEFAULT_LANGUAGE} />

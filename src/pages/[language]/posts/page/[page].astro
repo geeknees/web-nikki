@@ -2,13 +2,10 @@
 // ABOUTME: Localized paginated post index for translated articles.
 // ABOUTME: Keeps pagination URLs language-prefixed for English and Chinese readers.
 
-import LayoutDefault from '~/layouts/LayoutDefault.astro'
-import Post from '~/components/Post.astro'
-import Pagination from '~/components/Pagination.astro'
-import { getPosts, getPostDescription } from '~/utils'
+import PostListPage from '~/components/PostListPage.astro'
+import { getPosts } from '~/utils'
 import type { InferGetStaticPropsType, GetStaticPaths } from 'astro'
-import { getLocalizedPath, TRANSLATED_LANGUAGES } from '~/i18n'
-const { translate: t } = Astro.locals
+import { TRANSLATED_LANGUAGES } from '~/i18n'
 
 export const getStaticPaths = (async ({ paginate }) => {
   const paths = []
@@ -27,25 +24,4 @@ const { page } = Astro.props
 const { language } = Astro.params
 ---
 
-<LayoutDefault noindex={page.currentPage > 1}>
-  <section contain-layout un-flex='~ col gap-7.5'>
-    {
-      page.data.map((post) => (
-        <Post post={post}>
-          <p class='line-clamp-4'>{getPostDescription(post)}</p>
-        </Post>
-      ))
-    }
-
-    <Pagination
-      showLeft={Boolean(page.url.prev)}
-      leftTitle={t('prev')}
-      leftUrl={page.url.prev ? getLocalizedPath(page.url.prev, language) : ''}
-      showRight={Boolean(page.url.next)}
-      rightTitle={t('next')}
-      rightUrl={page.url.next ? getLocalizedPath(page.url.next, language) : ''}
-      currentPage={page.currentPage}
-      totalPage={page.lastPage}
-    />
-  </section>
-</LayoutDefault>
+<PostListPage page={page} language={language} />

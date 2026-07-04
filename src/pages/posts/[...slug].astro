@@ -1,18 +1,10 @@
 ---
-import Post from '~/components/Post.astro'
-import LayoutDefault from '~/layouts/LayoutDefault.astro'
+import PostDetail from '~/components/PostDetail.astro'
 import { getPosts } from '~/utils'
 import type { InferGetStaticPropsType, GetStaticPaths } from 'astro'
-import { getCollection, render } from 'astro:content'
-import Pagination from '~/components/Pagination.astro'
-import Comments from '~/components/Comments.astro'
 import {
   DEFAULT_LANGUAGE,
-  getLanguageFromPost,
-  getPostPath,
-  getPostSlug,
-  getPostTranslationKey,
-  SITE_LANGUAGES
+  getPostSlug
 } from '~/i18n'
 
 export const getStaticPaths = (async ({}) => {
@@ -31,107 +23,6 @@ export const getStaticPaths = (async ({}) => {
 type Props = InferGetStaticPropsType<typeof getStaticPaths>
 
 const { entry, prev, next } = Astro.props
-const { Content } = await render(entry)
-const { translate: t } = Astro.locals
-
-const allPosts = await getCollection('posts')
-const translationKey = getPostTranslationKey(entry)
-const alternates = allPosts
-  .filter((post) => getPostTranslationKey(post) === translationKey)
-  .map((post) => ({
-    href: new URL(getPostPath(post), Astro.url).toString(),
-    hreflang: SITE_LANGUAGES[getLanguageFromPost(post)].locale
-  }))
 ---
 
-<LayoutDefault
-  title={entry.data.title}
-  desc={entry.data.description}
-  banner={entry.data.banner}
-  keywords={entry.data.keywords}
-  publishedTime={entry.data.pubDate}
-  alternates={alternates}
->
-  <Post post={entry}>
-    <Content />
-  </Post>
-  {
-    entry.data.keywords.length > 0 && (
-      <section class='mt-8 border-t border-foreground-solid pt-6'>
-        <h2 class='post-title'>{t('keywords')}</h2>
-        <ul class='m-0 mt-3 flex flex-wrap gap-2 p-0 list-none'>
-          {entry.data.keywords.map((keyword) => (
-            <li>
-              <span class='inline-flex rounded-full border border-foreground-solid px-3 py-1 text-3.5'>
-                # {keyword}
-              </span>
-            </li>
-          ))}
-        </ul>
-      </section>
-    )
-  }
-  <Pagination
-    showLeft={Boolean(prev)}
-    leftTitle={`${t('prev_post')}: ${prev?.data.title}`}
-    leftUrl={prev ? getPostPath(prev) : ''}
-    showRight={Boolean(next)}
-    rightTitle={`${t('next_post')}: ${next?.data.title}`}
-    rightUrl={next ? getPostPath(next) : ''}
-    showPageCount={false}
-  />
-  <!-- BUG 这里使用 client:visible 会导致构建失败。ref: https://github.com/withastro/astro/issues/7329 -->
-  <Comments post={entry} />
-</LayoutDefault>
-
-<script>
-  import '@github/clipboard-copy-element'
-
-  document.addEventListener('clipboard-copy', function (event) {
-    const target = event.target as HTMLElement
-    const icon = target.querySelector('.icon') as HTMLElement
-    icon.classList.replace('i-mdi-content-copy', 'i-mdi-check')
-    setTimeout(() => {
-      icon.classList.replace('i-mdi-check', 'i-mdi-content-copy')
-    }, 1500)
-  })
-
-  const codeBlocks = Array.from(document.querySelectorAll('pre'))
-  const icon = "<div class='i-mdi-content-copy icon text-white'></div>"
-  for (let codeBlock of codeBlocks) {
-    let wrapper = document.createElement('div')
-    wrapper.className = 'code-container'
-
-    let copyButton = document.createElement('clipboard-copy')
-    let code = codeBlock.querySelector('code')
-    copyButton.value = code?.innerText ?? ''
-    copyButton.className = 'clipboard-copy'
-    copyButton.innerHTML = icon
-
-    codeBlock.appendChild(copyButton)
-
-    codeBlock.parentNode?.insertBefore(wrapper, codeBlock)
-    wrapper.appendChild(codeBlock)
-  }
-</script>
-
-<style is:global>
-  .code-container {
-    position: relative;
-  }
-  .clipboard-copy {
-    position: absolute;
-    top: 0.5rem;
-    right: 0.5rem;
-    width: 1.75rem;
-    height: 1.75rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 0.25rem;
-  }
-
-  .clipboard-copy:hover {
-    background-color: #30363d;
-  }
-</style>
+<PostDetail entry={entry} prev={prev} next={next} />

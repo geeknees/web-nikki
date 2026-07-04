@@ -1,0 +1,43 @@
+---
+// ABOUTME: Renders a year-grouped archive for posts in one language.
+// ABOUTME: Keeps archive grouping logic out of route-specific wrappers.
+
+import ListItem from '~/components/ListItem.astro'
+import ListSection from '~/components/ListSection.astro'
+import LayoutDefault from '~/layouts/LayoutDefault.astro'
+import { getPostTaxonomySummary } from '~/utils'
+import { getPostPath } from '~/i18n'
+
+interface Props {
+  posts: Post[]
+}
+
+const { posts } = Astro.props
+
+const postByYear = new Map<number, Post[]>()
+posts.forEach((post) => {
+  const year = post.data.pubDate.getFullYear()
+  if (!postByYear.has(year)) {
+    postByYear.set(year, [])
+  }
+  postByYear.get(year)!.push(post)
+})
+---
+
+<LayoutDefault>
+  <div un-flex='~ col gap-4'>
+    {
+      Array.from(postByYear.entries()).map(([year, posts]) => (
+        <ListSection title={year}>
+          {posts.map((post) => (
+            <ListItem
+              title={post.data.title}
+              href={getPostPath(post)}
+              description={getPostTaxonomySummary(post, { includeDate: true })}
+            />
+          ))}
+        </ListSection>
+      ))
+    }
+  </div>
+</LayoutDefault>

@@ -25,3 +25,4 @@ Markdown style guide.md
 # local agent state
 .private-journal/
 .beads/
+.pnpm-store/

@@ -17,6 +17,7 @@ import {
   DEFAULT_LANGUAGE,
   getLanguageFromPost,
   getLocalizedPath,
+  withBasePath,
   getPostPath,
   getPostSlug,
   getPostTranslationKey,
@@ -65,6 +66,7 @@ assert.equal(
 assert.equal(articleStructuredData.keywords, 'SNS, X, YouTube')
 
 assert.equal(DEFAULT_LANGUAGE, 'ja')
+assert.equal(withBasePath('/sitemap.xml'), '/web-nikki/sitemap.xml')
 assert.equal(
   getLocalizedPath('/posts/2026-03-05/', 'ja'),
   '/web-nikki/posts/2026-03-05/'

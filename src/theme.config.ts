@@ -1,3 +1,5 @@
+import { withBasePath } from './i18n'
+
 export const THEME_CONFIG: App.Locals['config'] = {
   /** blog title */
   title: 'Web日記（web-nikki）',
@@ -9,6 +11,8 @@ export const THEME_CONFIG: App.Locals['config'] = {
   website: 'https://geeknees.github.io/',
   /** your locale */
   locale: 'ja-jp',
+  /** Google Analytics measurement ID */
+  googleAnalyticsId: 'G-C536MZEKVL',
   /** theme style */
   themeStyle: 'light',
   /** your socials */
@@ -19,7 +23,7 @@ export const THEME_CONFIG: App.Locals['config'] = {
     },
     {
       name: 'rss',
-      href: '/web-nikki/atom.xml'
+      href: withBasePath('/atom.xml')
     },
     {
       name: 'twitter',
@@ -34,44 +38,17 @@ export const THEME_CONFIG: App.Locals['config'] = {
   navs: [
     {
       name: 'Posts',
-      href: '/web-nikki/posts/page/1'
+      href: withBasePath('/posts/page/1')
     },
     {
       name: 'Archive',
-      href: '/web-nikki/archive'
+      href: withBasePath('/archive')
     },
     {
       name: 'Categories',
-      href: '/web-nikki/categories'
+      href: withBasePath('/categories')
     }
-    // {
-    //   name: 'About',
-    //   href: 'web-nikki/about'
-    // }
   ],
   /** your category name mapping, which the `path` will be shown in the url */
-  category_map: [{ name: '胡适', path: 'hu-shi' }],
-  /** your comment provider */
-  comments: {
-    // disqus: {
-    //   shortname: 'typography-astro'
-    // }
-    // giscus: {
-    //   repo: 'moeyua/astro-theme-typography',
-    //   repoId: 'R_kgDOKy9HOQ',
-    //   category: 'General',
-    //   categoryId: 'DIC_kwDOKy9HOc4CegmW',
-    //   mapping: 'title',
-    //   strict: '0',
-    //   reactionsEnabled: '1',
-    //   emitMetadata: '1',
-    //   inputPosition: 'top',
-    //   theme: 'light',
-    //   lang: 'zh-CN',
-    //   loading: 'lazy',
-    // },
-    // twikoo: {
-    //   envId: "https://twikoo-tau-flame.vercel.app",
-    // }
-  }
+  category_map: []
 }

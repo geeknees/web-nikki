@@ -32,9 +32,7 @@ export async function getPosts(options: { language?: SiteLanguage } = {}) {
   const language = options.language ?? DEFAULT_LANGUAGE;
   const localizedPosts = posts.filter((post) => getLanguageFromPost(post) === language);
   localizedPosts.sort((a, b) => {
-    const aDate = a.data.pubDate || new Date();
-    const bDate = b.data.pubDate || new Date();
-    return bDate.getTime() - aDate.getTime();
+    return b.data.pubDate.getTime() - a.data.pubDate.getTime();
   });
   return localizedPosts;
 }

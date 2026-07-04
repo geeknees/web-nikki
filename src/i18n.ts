@@ -4,6 +4,11 @@
 export const DEFAULT_LANGUAGE = 'ja'
 export const SITE_BASE_PATH = '/web-nikki'
 
+export function withBasePath(pathname: string) {
+  const suffix = pathname.startsWith('/') ? pathname : `/${pathname}`
+  return `${SITE_BASE_PATH}${suffix}`.replace(/\/{2,}/g, '/')
+}
+
 export const SITE_LANGUAGES = {
   ja: {
     locale: 'ja-jp',
@@ -67,11 +72,11 @@ export const LANGUAGES = {
     About: 'About',
     Links: 'Links',
 
-    posted_at: 'Posted at',
+    posted_at: 'Posted on',
     tag_count: '%d tags',
-    archive_count: '%d post',
-    categories_count: '%d post',
-    page_count: '%d',
+    archive_count: '%d posts',
+    categories_count: '%d posts',
+    page_count: '%d pages',
     page_number: 'Page %d',
     all_posts: 'All Posts',
     comments: 'comments',
@@ -83,32 +88,6 @@ export const LANGUAGES = {
     language: 'Language',
     read_by_topic: 'Read by topic',
     keywords: 'Keywords',
-  },
-  'zh-tw': {
-    Home: '首頁',
-    Posts: '文章',
-    Categories: '分類',
-    Archive: '歸檔',
-    Tags: '標籤',
-    About: '關於',
-    Links: '鏈接',
-
-    posted_at: '發佈於',
-    tag_count: '%d 篇',
-    archive_count: '%d 篇',
-    categories_count: '%d 篇',
-    page_count: '共 %d 頁',
-    page_number: '第 %d 頁',
-    all_posts: '所有文章',
-    comments: '評論',
-    share: '分享到',
-    prev: '上一頁',
-    next: '下一頁',
-    prev_post: '上一篇',
-    next_post: '下一篇',
-    language: '語言',
-    read_by_topic: '按主題閱讀',
-    keywords: '關鍵詞',
   },
   'ja-jp': {
     Home: 'ホーム',

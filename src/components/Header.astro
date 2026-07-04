@@ -2,7 +2,8 @@
 import type { HTMLAttributes } from 'astro/types'
 import {
   getLanguageFromLocale,
-  getLanguageSwitcherLinks
+  getLanguageSwitcherLinks,
+  withBasePath
 } from '~/i18n'
 
 type Props = HTMLAttributes<'header'>
@@ -28,7 +29,7 @@ const languageLinks = getLanguageSwitcherLinks(Astro.url.pathname)
     un-flex='~ col gap-2.5'
     class='site-brand cursor-pointer transition-[padding,background] duration-800 ease-in-out'
   >
-    <a class='normal' href='/web-nikki/'>
+    <a class='normal' href={withBasePath('/')}>
       <h3 class='site-brand-author text-5 font-extrabold font-serif'>{author}</h3>
       <h1 class='site-brand-title text-8 font-extrabold font-serif'>{title}</h1>
     </a>

@@ -21,6 +21,7 @@ function listSourceFiles(directory: string): string[] {
 const sourceFiles = [
   ...listSourceFiles(join(process.cwd(), 'src')),
   join(process.cwd(), 'astro.config.ts'),
+  join(process.cwd(), 'package.json'),
 ]
 
 for (const file of sourceFiles) {
@@ -30,6 +31,11 @@ for (const file of sourceFiles) {
     content,
     /cdn\.staticfile\.org/,
     `${file} must not load scripts from cdn.staticfile.org`
+  )
+  assert.doesNotMatch(
+    content,
+    /\b(?:giscus|twikoo|disqus)\b/i,
+    `${file} must not reintroduce disabled comment providers`
   )
 }
 

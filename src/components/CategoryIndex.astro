@@ -1,0 +1,36 @@
+---
+// ABOUTME: Renders the category index for a specific site language.
+// ABOUTME: Converts configured category display names to stable localized URLs.
+
+import ListItem from '~/components/ListItem.astro'
+import ListSection from '~/components/ListSection.astro'
+import LayoutDefault from '~/layouts/LayoutDefault.astro'
+import { getPathFromCategory } from '~/utils/index'
+import { getLocalizedPath, type SiteLanguage } from '~/i18n'
+
+interface Props {
+  categories: Map<string, Post[]>
+  language: SiteLanguage
+}
+
+const { categories, language } = Astro.props
+const { translate: t } = Astro.locals
+const { category_map } = Astro.locals.config
+---
+
+<LayoutDefault>
+  <ListSection title={t('Categories')}>
+    {
+      Array.from(categories).map(([key, value]) => (
+        <ListItem
+          title={key}
+          href={getLocalizedPath(
+            `/categories/${getPathFromCategory(key, category_map)}/`,
+            language
+          )}
+          description={t('categories_count', value.length)}
+        />
+      ))
+    }
+  </ListSection>
+</LayoutDefault>
