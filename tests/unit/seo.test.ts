@@ -140,6 +140,10 @@ assert.equal(
 const homepageSelections = getHomepageCategorySelections(
   [
     {
+      slug: '2026-07-04',
+      data: { categories: ['研究メモ'] }
+    },
+    {
       slug: '2026-03-05',
       data: { categories: ['AIとインターネット'] }
     },

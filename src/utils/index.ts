@@ -6,6 +6,7 @@ import sanitizeHtml from "sanitize-html";
 import MarkdownIt from "markdown-it";
 import { DEFAULT_LANGUAGE, getLanguageFromPost, type SiteLanguage } from "~/i18n";
 
+export { formatDate } from "./date.ts";
 export { getKeywordSummary, getPostTaxonomySummary } from "./post-taxonomy";
 
 export async function getCategories(language: SiteLanguage = DEFAULT_LANGUAGE) {
@@ -48,15 +49,6 @@ export function getPostDescription(post: Post) {
   const html = parser.render(post.body ?? "");
   const sanitized = sanitizeHtml(html, { allowedTags: [] });
   return sanitized.slice(0, 400);
-}
-
-export function formatDate(date?: Date) {
-  if (!date) return "--";
-  const year = date.getFullYear().toString().padStart(4, "0");
-  const month = (date.getMonth() + 1).toString().padStart(2, "0");
-  const day = date.getDate().toString().padStart(2, "0");
-
-  return `${year}-${month}-${day}`;
 }
 
 export function getPathFromCategory(
