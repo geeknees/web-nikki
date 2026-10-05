@@ -1,0 +1,36 @@
+---
+// ABOUTME: Renders the client-side full-text search UI backed by the Pagefind index.
+// ABOUTME: Pagefind picks the index matching the page's <html lang>, so each language searches its own posts.
+
+import LayoutDefault from '~/layouts/LayoutDefault.astro'
+import { withBasePath } from '~/i18n'
+
+const { translate: t } = Astro.locals
+const bundlePath = withBasePath('/pagefind/')
+---
+
+<LayoutDefault title={t('Search')} noindex>
+  <link rel='stylesheet' href={`${bundlePath}pagefind-component-ui.css`} />
+  <script is:inline type='module' src={`${bundlePath}pagefind-component-ui.js`}></script>
+
+  <h2 class='post-title'>{t('Search')}</h2>
+  <div class='site-search mt-6'>
+    <pagefind-config bundle-path={bundlePath} show-sub-results></pagefind-config>
+    <pagefind-input autofocus></pagefind-input>
+    <pagefind-summary></pagefind-summary>
+    <pagefind-results></pagefind-results>
+  </div>
+</LayoutDefault>
+
+<style is:global>
+  .site-search {
+    --pf-text: var(--site-foreground);
+    --pf-text-secondary: var(--site-foreground);
+    --pf-text-muted: color-mix(in srgb, var(--site-foreground) 65%, transparent);
+    --pf-background: var(--site-background);
+    --pf-border: color-mix(in srgb, var(--site-foreground) 35%, transparent);
+    --pf-border-focus: var(--site-foreground);
+    --pf-hover: color-mix(in srgb, var(--site-foreground) 8%, transparent);
+    --pf-font: var(--site-sans-font);
+  }
+</style>

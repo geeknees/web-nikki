@@ -1,0 +1,13 @@
+---
+// ABOUTME: Localized search pages for translated languages.
+// ABOUTME: Each page searches the Pagefind index for its own language.
+
+import SearchPage from '~/components/SearchPage.astro'
+import { TRANSLATED_LANGUAGES } from '~/i18n'
+
+export function getStaticPaths() {
+  return TRANSLATED_LANGUAGES.map((language) => ({ params: { language } }))
+}
+---
+
+<SearchPage />

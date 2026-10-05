@@ -42,9 +42,11 @@ const alternates = allPosts
   publishedTime={entry.data.pubDate}
   alternates={alternates}
 >
-  <PostBody post={entry}>
-    <Content />
-  </PostBody>
+  <div data-pagefind-body>
+    <PostBody post={entry}>
+      <Content />
+    </PostBody>
+  </div>
   {
     entry.data.keywords.length > 0 && (
       <section class='mt-8 border-t border-foreground-solid pt-6'>

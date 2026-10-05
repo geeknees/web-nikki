@@ -129,4 +129,39 @@ assert.match(
   /rel="alternate" href="https:\/\/geeknees\.github\.io\/web-nikki\/zh\/posts\/2023-05-14_rubykaigi\/" hreflang="zh-cn"/
 )
 
+const pagefindEntry = JSON.parse(
+  readFileSync(join(cwd, 'dist/pagefind/pagefind-entry.json'), 'utf8')
+) as { languages: Record<string, { page_count: number }> }
+const builtPostCount = (...segments: string[]) =>
+  readdirSync(join(cwd, 'dist', ...segments, 'posts')).filter((name) => name !== 'page')
+    .length
+
+assert.ok(existsSync(join(cwd, 'dist/pagefind/pagefind-component-ui.js')), 'Pagefind UI bundle is missing')
+assert.deepEqual(Object.keys(pagefindEntry.languages).sort(), ['en-us', 'ja-jp', 'zh-cn'])
+assert.equal(
+  pagefindEntry.languages['ja-jp'].page_count,
+  builtPostCount(),
+  'Japanese search index should contain exactly the post detail pages'
+)
+assert.equal(pagefindEntry.languages['en-us'].page_count, builtPostCount('en'))
+assert.equal(pagefindEntry.languages['zh-cn'].page_count, builtPostCount('zh'))
+assert.match(articleHtml, /data-pagefind-body/)
+assert.match(
+  articleHtml,
+  /<h1 class="post-title!" data-pagefind-meta="title">/,
+  'search results should use the post title, not the site header'
+)
+assert.doesNotMatch(homepageHtml, /data-pagefind-body/)
+
+const searchHtml = readFileSync(join(cwd, 'dist/search/index.html'), 'utf8')
+const englishSearchHtml = readFileSync(join(cwd, 'dist/en/search/index.html'), 'utf8')
+assert.match(searchHtml, /<html lang="ja-jp">/)
+assert.match(searchHtml, /\/web-nikki\/pagefind\/pagefind-component-ui\.js/)
+assert.match(searchHtml, /<pagefind-config bundle-path="\/web-nikki\/pagefind\/"/)
+assert.match(searchHtml, /<meta name="robots" content="noindex, follow">/)
+assert.match(englishSearchHtml, /<html lang="en-us">/)
+assert.match(homepageHtml, /href="\/web-nikki\/search\/"/)
+assert.match(englishHomepageHtml, /href="\/web-nikki\/en\/search\/"/)
+assert.doesNotMatch(sitemapXml, /\/search\//)
+
 console.log('integration: build output SEO assertions passed')

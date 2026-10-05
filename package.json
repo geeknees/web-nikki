@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "astro check && astro dev",
     "preview": "astro preview",
-    "build": "astro check && astro build",
+    "build": "astro check && astro build && pagefind --site dist",
     "test": "pnpm test:unit && pnpm test:integration && pnpm test:e2e",
     "test:unit": "node --test --experimental-strip-types tests/unit/*.test.ts",
     "test:integration": "node --test --experimental-strip-types tests/integration/*.test.ts",
@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.9.9",
+    "@astrojs/markdown-remark": "^7.2.1",
     "@astrojs/mdx": "^7.0.0",
     "@astrojs/partytown": "^2.1.7",
     "@astrojs/rss": "^4.0.18",
@@ -28,8 +29,7 @@
     "rehype-katex": "^7.0.0",
     "remark-math": "^6.0.0",
     "sanitize-html": "^2.11.0",
-    "typescript": "^5.5.4",
-    "@astrojs/markdown-remark": "^7.2.1"
+    "typescript": "^5.5.4"
   },
   "devDependencies": {
     "@iconify-json/mdi": "^1.1.64",
@@ -40,6 +40,7 @@
     "@unocss/transformer-directives": "^0.63.4",
     "consola": "^3.2.3",
     "esno": "^4.7.0",
+    "pagefind": "^1.5.2",
     "unocss": "^0.61.5"
   }
 }

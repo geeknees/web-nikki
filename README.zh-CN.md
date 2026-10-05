@@ -11,6 +11,15 @@
 - GitHub Pages 部署
 - Atom feed 和自定义 sitemap route
 - 日文页面在根路径，英文和中文页面分别在 `/en` 和 `/zh`
+- 使用 [Pagefind](https://pagefind.app/) 提供全文搜索：`/search/`、`/en/search/`、`/zh/search/`
+
+## 搜索
+
+`pnpm build` 会在 `astro build` 之后运行 `pagefind --site dist`。Pagefind 按 `<html lang>`（`ja-jp`、`en-us`、`zh-cn`）分别建立索引，因此每个搜索页只会搜到对应语言的文章。
+
+只有文章详情页会被索引：正文包在 `data-pagefind-body` 中，文章 `<h1>` 带有 `data-pagefind-meta="title"`，使搜索结果显示文章标题而不是站点标题。
+
+索引只存在于构建产物中。在 `pnpm dev` 下搜索页无法加载结果；本地试用请运行 `pnpm build && pnpm preview`。
 
 ## 开发
 

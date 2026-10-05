@@ -61,6 +61,7 @@ export const LANGUAGES = {
     next_post: '下一篇',
     language: '语言',
     read_by_topic: '按主题阅读',
+    Search: '搜索',
     keywords: '关键词',
   },
   'en-us': {
@@ -87,6 +88,7 @@ export const LANGUAGES = {
     next_post: 'Next post',
     language: 'Language',
     read_by_topic: 'Read by topic',
+    Search: 'Search',
     keywords: 'Keywords',
   },
   'ja-jp': {
@@ -113,6 +115,7 @@ export const LANGUAGES = {
     next_post: '次の投稿',
     language: '言語',
     read_by_topic: 'テーマ別に読む',
+    Search: '検索',
     keywords: 'キーワード',
   },
 }

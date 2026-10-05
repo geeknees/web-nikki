@@ -11,6 +11,15 @@ This repository is an Astro static site for Japanese posts and their English and
 - GitHub Pages deployment
 - Atom feed and a hand-written sitemap route
 - Japanese root routes with English and Chinese routes under `/en` and `/zh`
+- Full-text search with [Pagefind](https://pagefind.app/) at `/search/`, `/en/search/`, and `/zh/search/`
+
+## Search
+
+`pnpm build` runs `pagefind --site dist` after `astro build`. Pagefind builds a separate index per `<html lang>` (`ja-jp`, `en-us`, `zh-cn`), so each search page only finds posts in its own language.
+
+Only post detail pages are indexed: the post body is wrapped in `data-pagefind-body`, and the post `<h1>` carries `data-pagefind-meta="title"` so results show the post title instead of the site header.
+
+The index only exists in build output. Under `pnpm dev` the search page cannot load results; use `pnpm build && pnpm preview` to try it locally.
 
 ## Development
 
