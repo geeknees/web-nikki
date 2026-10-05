@@ -47,6 +47,10 @@ export const THEME_CONFIG: App.Locals['config'] = {
     {
       name: 'Categories',
       href: withBasePath('/categories')
+    },
+    {
+      name: 'Search',
+      href: withBasePath('/search')
     }
   ],
   /** your category name mapping, which the `path` will be shown in the url */
