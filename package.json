@@ -37,7 +37,7 @@
     "@types/markdown-it": "^13.0.9",
     "@types/node": "^24.19.2",
     "@types/sanitize-html": "^2.16.2",
-    "@unocss/reset": "^0.59.4",
+    "@unocss/reset": "^66.11.0",
     "@unocss/transformer-directives": "^0.63.6",
     "consola": "^3.4.2",
     "esno": "^4.8.0",
