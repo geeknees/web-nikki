@@ -29,7 +29,7 @@
     "markdown-it": "^14.3.2",
     "rehype-katex": "^7.0.1",
     "remark-math": "^6.0.0",
-    "sanitize-html": "^2.18.0",
+    "sanitize-html": "^2.18.1",
     "typescript": "^5.9.3"
   },
   "devDependencies": {
